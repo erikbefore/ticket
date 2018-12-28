@@ -89,8 +89,8 @@ class SettingsTableSeeder extends Seeder
              * Panic Help Desk admin route: Where to load all the administration menusd (ex. http://url/panichd/category)
              * Default: /panichd
              */
-            'admin_route'      => 'panichd',
-            'admin_route_path' => 'panichd',
+            'admin_route'      => 'admin',
+            'admin_route_path' => 'admin',
             /*
              * Template adherence: The master blade template to be extended
              * Default: panichd::master
@@ -107,7 +107,7 @@ class SettingsTableSeeder extends Seeder
 			/*
 			 * Admin navbar button text is configurable
 			*/
-			'admin_button_text' => 'PanicHD',
+			'admin_button_text' => 'Administração',
 			
             /*
 			 * Tickets email account: The email address for all package notifications.
@@ -236,9 +236,9 @@ class SettingsTableSeeder extends Seeder
 			/**
 			 * Attachment allowed mimetypes
 			 *
-			 * Default: jpg,jpeg,png,gif,doc,docx,rtf,xls,xlsx,pdf,csv
+			 * Default: jpg,jpeg,png,gif,doc,docx,rtf,xls,xlsx,pdf,csv,txt
 			*/
-			'attachments_mimes' => 'jpg,jpeg,png,gif,doc,docx,rtf,xls,xlsx,pdf,csv',
+			'attachments_mimes' => 'jpg,jpeg,png,gif,doc,docx,rtf,xls,xlsx,pdf,csv,txt',
 			
 			/*
              * Defines relative path under storage_path() where to store attached files
@@ -264,7 +264,7 @@ class SettingsTableSeeder extends Seeder
 			/*
 			 * If set to a number, limit texts in ticket list to specified character length and show plus / minus icons
 			 */
-			'list_text_max_length' => '300',
+			'list_text_max_length' => '100',
 
             /*
              * Interval in which the Newest tickets list will be reloaded automatically. Set to 0 to disable

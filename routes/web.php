@@ -12,23 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/teste', 'TicketsController@index');
 
 include 'ticket.php';
-
-
-//Route::namespace('Tickets')->group(function () {
-//    Route::get('/atendimento', 'TicketsController@index');
-//
-//
-//    Route::get("/tickets/data/{id?}", 'TicketsController@data');
-//
-//});
-
-

@@ -245,7 +245,7 @@ class NotificationsController extends Controller
 		// Send notifications
 		$this->sendNotification($a_to, $data);
 		
-		return back()->with('status','Notificacions reenviades correctament');
+		return back()->with('status','Notificação enviada');
 	}
 	
 	

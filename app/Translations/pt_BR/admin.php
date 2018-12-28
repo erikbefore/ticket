@@ -1,6 +1,6 @@
 <?php
 
-return [
+$original =  [
 
     'nav-settings' => 'Configurações',
     'nav-agents' => 'Agentes',
@@ -222,7 +222,7 @@ return [
 
     'status-delete-title' => 'Excluir status ":name"',
 
-    'status-delete-warning' => 'Há < span class=" modal-tickets-count " </span> tickets que usam esse status. Você deve escolher outro para todos eles',
+    'status-delete-warning' => 'Há <b><span class=" modal-tickets-count "></span></b> tickets que usam esse status. Você deve escolher outro para todos eles',
 
     'status-delete-error-no-status' => 'Você precisa especificar um novo status para ":name" tickets relacionados ao status',
 
@@ -293,3 +293,16 @@ Código exato executado:',
     'config-update-confirm' => 'Configuração :name foi atualizado',
 
 ];
+
+$adicionados = [
+    'member-index-help'                 => 'Membros são todos usuários registrados no Banco de Dados.',
+    'member-index-title'                => 'Gerenciar membros',
+    'nav-members'                       => 'Membros',
+    'nav-administrators'                => 'Administradores',
+    'btn-add-new'                       => 'Criar novo',
+    'member-delete-confirmation'        => 'Tem certeza que deseja excluir esse usuário?',
+    'member-modal-create-title'         => 'Criar membro',
+    'member-modal-update-title'         => 'Update membro',
+];
+
+return array_merge($original, $adicionados);

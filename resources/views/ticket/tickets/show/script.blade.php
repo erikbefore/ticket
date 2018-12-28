@@ -78,7 +78,7 @@
 				@endif
 			@else
 				// User Level
-				if (!$("#complete-ticket-form input[name='reason_id']:checked").val()) {
+				if (!$("#complete-ticket-form input[name='reason_id']:checked").val() && $('#clarification').summernote('isEmpty') == true) {
 					alert('{{ trans('panichd::lang.show-ticket-modal-complete-blank-reason-alert') }}');
 					return false;
 				}

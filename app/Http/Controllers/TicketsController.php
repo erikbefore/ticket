@@ -165,7 +165,7 @@ class TicketsController extends Controller
 
         $this->renderTicketTable($collection, $ticketList);
 
-        $a_raws = ['id', 'subject', 'intervention', 'status', 'agent', 'priority', 'owner_name', 'calendar', 'updated_at', 'complete_date', 'category', 'tags'];
+        $a_raws = ['id', 'subject', 'intervention', 'status', 'agent', 'priority', 'owner_name', 'calendar', 'updated_at', 'complete_date', 'category', 'tags', 'content'];
 
 		if (Setting::grab('departments_feature')){
 		    $a_raws[]= 'dept_full_name';
@@ -228,7 +228,7 @@ class TicketsController extends Controller
                 }else{
                     $field = $ticket->content;
                 }
-				if ($ticket->all_attachments_count>0) $field.= "<br />" . $ticket->all_attachments_count . ' <span class="fa fa-paperclip tooltip-info attachment" title="'.trans('panichd::lang.table-info-attachments-total', ['num' => $ticket->all_attachments_count]).'"></span>';
+				//if ($ticket->all_attachments_count>0) $field.= "<br />" . $ticket->all_attachments_count . ' <span class="fa fa-paperclip tooltip-info attachment" title="'.trans('panichd::lang.table-info-attachments-total', ['num' => $ticket->all_attachments_count]).'"></span>';
 
 				return $field;
 			});

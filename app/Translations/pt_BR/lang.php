@@ -211,7 +211,7 @@ $original =  [
 
     'update' => 'Atualizar',
 
-    'user' => 'Do utilizador',
+    'user' => 'Atendente',
 
     'year' => 'Ano',
 
