@@ -248,7 +248,7 @@ $original =  [
 
     'notice-index-js-delete' => 'Tem certeza de que deseja excluir este aviso?',
 
-    'notice-index-help' => 'Quando um conjunto de tickets com um dos seguintes proprietários é criado, haverá duas coisas: < br / > < br / > < ol > < li > Um e-mail será enviado para ticket < B > proprietário </b>, com um modelo de e-mail específico. < / li > < li > Enquanto o ticket for <b> open </b>, os usuários no mesmo departamento verão o ticket como aviso <b> aviso </b> no menu Criar ticket.',
+    'notice-index-help' => 'Quando um <b>novo</b> ticket for definido com um dos seguintes proprietários, acontecerão duas coisas: <br/><br/><ol> <li> Um e-mail será enviado para ticket <b> proprietário </b>, com um modelo de e-mail específico. </li> <li> Enquanto o ticket estiver <b>aberto</b>, os usuários no mesmo departamento verão o ticket como aviso <b> aviso </b> no menu.',
 
     'notice-index-owner-alert' => 'Um usuário normal, ao criar um novo ticket, não poderá ver nenhum usuário listado aqui',
     'config-index-title' => 'Gerenciar Configurações',
@@ -305,4 +305,43 @@ $adicionados = [
     'member-modal-update-title'         => 'Update membro',
 ];
 
-return array_merge($original, $adicionados);
+
+$rotaAdminDashboard= [
+
+// $admin_route_path/dashboard
+    'index-title'                         => 'Tickets System Dashboard',
+    'index-empty-records'                 => 'No tickets yet',
+    'index-total-tickets'                 => 'Total tickets',
+    'index-newest-tickets'                => ' Tickets Novos',
+    'index-active-tickets'                => ' Tickets ativos',
+    'index-complete-tickets'              => ' Tickets fechados',
+    'index-performance-indicator'         => 'Performance Indicator',
+    'index-periods'                       => 'Períodos',
+    'index-3-months'                      => '3 meses',
+    'index-6-months'                      => '6 meses',
+    'index-12-months'                     => '12 meses',
+    'index-tickets-share-per-category'    => 'Tickets por categoria',
+    'index-tickets-share-per-agent'       => 'Tickets por agente',
+    'index-categories'                    => 'Categorias',
+    'index-category'                      => 'Category',
+    'index-agents'                        => 'Agentes',
+    'index-agent'                         => 'Agente',
+    'index-administrators'                => 'Administratores',
+    'index-administrator'                 => 'Administrator',
+    'index-users'                         => 'Usuários',
+    'index-user'                          => 'Usuário',
+    'index-tickets'                       => 'Tickets',
+    'index-open'                          => 'Aberto',
+    'index-closed'                        => 'Fechado',
+    'index-total'                         => 'Total',
+    'index-month'                         => 'Mês',
+    'index-performance-chart'             => 'Quantos dias em média para resolver um ticket?',
+    'index-categories-chart'              => 'Tickets distribution per category',
+    'index-agents-chart'                  => 'Tickets distribution per Agent',
+    'index-view-category-tickets'         => 'View :list tickets in :category category',
+    'index-view-agent-tickets'            => 'View agent assigned :list tickets',
+    'index-view-user-tickets'             => 'View user own :list tickets',
+
+];
+
+return array_merge($original, $adicionados, $rotaAdminDashboard);

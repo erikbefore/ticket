@@ -1,7 +1,7 @@
 <?php
 return [
 
-    'notify-ticket-category' => ' :name bilhetes',
+    'notify-ticket-category' => ' :name Bticket',
     'notify-created-by' => 'Novo de :name',
     'notify-closed-by' => 'fechado por :agent',
     'notify-status-updated-by' => 'status alterado por :agent',

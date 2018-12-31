@@ -168,8 +168,8 @@ $original =  [
     'datetime-format' => 'Y-m-d H: i',
 	
 	'datetimepicker-format' => 'YYYY-MM-DD HH: mm',
-
-    
+    'datetime-text'                    => ':date, :timeh',
+    'deleted-member'                   => 'Membro excluído',
     'department' => 'Departamento',
 
     'department-shortening' => 'Dept.',
@@ -188,7 +188,10 @@ $original =  [
     'limit-date' => 'Data-limite',
 
     'list' => 'Lista',
-
+    'mark-complete'                    => 'Concluir',
+    'member'                           => 'Membro',
+    'name'                             => 'Nome',
+    'newest-tickets-adjective'         => 'Novo',
     'no' => 'Não',
     'no-replies' => 'Sem Resposta.',
     'owner' => 'Proprietário',
@@ -210,7 +213,7 @@ $original =  [
     'tomorrow' => 'Amanhã',
 
     'update' => 'Atualizar',
-
+    'updated-date'  => 'Atualizado :date',
     'user' => 'Atendente',
 
     'year' => 'Ano',
@@ -259,6 +262,12 @@ $original =  [
 
     'ticket-notices-empty' => 'Não há avisos ativos',
 
+    // Newest tickets page reload Modal
+    'page-reload-modal-title'          => 'Recarregar página',
+    'page-reload-modal-countdown'      => 'Esta página será recarregada em <kbd><span id="counter">:num</span></kbd> segundos.',
+    'page-reload-modal-reloading'      => 'Esta página está recarregando ... por favor aguarde',
+    'page-reload-modal-button-now'     => 'Recarregar agora!',
+
     'update-agent-same' => 'O agente não foi alterado! Ticket < a href=": link " title="quot; title" > < u >: name < / u > < / a >',
 
     'update-agent-ok' => 'O agente foi atualizado corretamente. Ticket < a href=": link " title="quot; title" > < u >: name < / u > < / a >:: old_agent - > : new_agent',
@@ -284,6 +293,7 @@ $original =  [
 
     'create-ticket-info-limit-date' => 'Padrão: Sem limite',
     'create-ticket-describe-issue' => 'Descreva seu problema em Detalhes',
+    'create-ticket-intervention-help'  => 'Ações tomadas para resolução do ticket',
 
     'attach-files' => 'Anexar arquivos',
 
@@ -370,8 +380,9 @@ $original =  [
     'comment-note-from-agent' => 'Nota de <b> :agent </b>',
 
     'comment-complete-title' => 'Ticket completo',
+    'comment-completetx-title'   => 'Ticket completo',
 
-    'comment-complete-by' => 'Tancat per <b>:owner </b>',
+    'comment-complete-by' => 'Fechado Por <b>:owner </b>',
 
     'comment-reopen-title' => 'Ticket reaberto',
 
@@ -386,6 +397,7 @@ $original =  [
     'show-ticket-add-comment-note' => 'Nota interna',
 
     'show-ticket-add-comment-reply' => 'Responder ao usuário',
+    'show-ticket-add-com-check-email-text'   => 'Adicionar texto na notificação do usuário',
 
     'show-ticket-add-com-check-intervention' => 'Anexe este texto no campo de intervenção',
 

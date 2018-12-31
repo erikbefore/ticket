@@ -309,7 +309,7 @@ class SettingsTableSeeder extends Seeder
              * Default: builtin
              * Options: builtin, modal
              */
-            'delete_modal_type' => 'builtin',
+            'delete_modal_type' => 'modal',
 
             /* ------------------ JS EDITOR ------------------ */
 

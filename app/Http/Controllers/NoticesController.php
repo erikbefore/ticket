@@ -9,7 +9,7 @@ class NoticesController extends Controller
 {
     public function __construct()
 	{
-		 $this->middleware('PanicHD\PanicHD\Middleware\RequiredSettingMiddleware:Notices');
+		 $this->middleware('App\Http\Middleware\RequiredSettingMiddleware:Notices');
 	}
 	
 	
