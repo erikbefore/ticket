@@ -3,11 +3,4 @@
  - Executar: php artisan migrate
  - Executar: composer dump-autoload
  - Executar: php artisan db:seed
-
-
- 1 - Executar o composer install
- 2 - e
- 2 - Executar o comando:  php artisan db:seed --class=PanicHD\\PanicHD\\Seeds\\SettingsTableSeeder
- 3 - Enable "panichd_thumbnails" folder access:
-
-     php artisan storage:link
+ - php artisan storage:link

@@ -24,123 +24,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56898fa4-9caa-4ef1-ab09-dc96a629df70" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.readme" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Model/UF.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_01_01_110000_create_ticketit_tables.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_01_03_135940_create_uf_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/RegionalTableSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/UfTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/atendimento.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/atendimento.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/CategoriesTableSeeders.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TicketsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TicketsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Member.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/Setting.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Setting.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/Ticket.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Ticket.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/PanicHDServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/PanicHDServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Translations/pt_BR/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Translations/pt_BR/admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Translations/pt_BR/lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Translations/pt_BR/lang.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_01_01_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_01_01_100000_create_password_resets_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2015_07_22_115516_create_ticketit_tables.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2015_07_22_123254_alter_users_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2015_09_29_123456_add_completed_at_column_to_ticketit_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2015_10_08_123457_create_settings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_01_01_120000_create_settings_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_01_15_002617_add_htmlcontent_to_ticketit_and_comments.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_01_15_040207_enlarge_settings_columns.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2016_01_15_120557_add_indexes.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_02_27_141336_update_ticketit_categories_users_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_03_21_144731_add_ticketit_attachments.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_04_24_090220_create_ticketit_tags_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_01_03_135938_create_regional_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_04_24_091404_create_ticketit_taggables_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_05_16_090119_update_ticketit_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_05_23_124814_update_comments_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_06_23_160710_create_ticketit_closingreasons_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_07_06_135507_create_ticketit_department_tables.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_07_07_091834_update_ticketit_table_creator_id.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_07_07_155314_update_users_table_for_depart.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_08_04_084157_update_ticketit_table_start_limit_dates.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_08_22_123953_update_ticketit_attachments_table_description.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_09_07_115324_update_ticketit_attachments_add_image_sizes.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_09_13_155213_update_ticketit_attachments_table_original_attachment.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_10_16_161138_update_ticketit_categories_add_create_level.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_11_06_094231_update_ticketit_categories_table_add_email.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_11_08_112846_update_ticketit_categories_add_email_name.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_12_17_185145_change_ticketit_tables_to_panichd.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_12_18_220408_rename_ticketit_admin_agent_to_panichd.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2017_12_25_222719_update_panichd_priorities_add_magnitude.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2018_01_23_132138_update_panichd_tickets_add_hidden.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2018_04_11_181039_update_panichd_departments_rename.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2018_04_18_122824_update_rename_ticketit_settings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_01_03_150856_alter_ticketit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/Basic.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/Basic.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/BasicPriorities.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/BasicPriorities.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/BasicStatuses.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/BasicStatuses.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.readme" beforeDir="false" afterPath="$PROJECT_DIR$/.readme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DemoDataSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DemoDataSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/SettingsPatch.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/SettingsPatch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/SettingsTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/SettingsTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/af.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/ar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/az.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/bg.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/bs.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/ca.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/cs.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/da.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/de.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/dsb.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/el.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/es.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/et.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/eu.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/fa.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/fi.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/fr.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/gl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/he.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/hi.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/hr.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/hsb.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/hu.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/hy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/id.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/is.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/it.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/ja.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/km.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/ko.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/lt.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/lv.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/mk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/ms.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/nb.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/nl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/pl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/ps.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/pt.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/ro.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/ru.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/sk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/sl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/sr-Cyrl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/sr.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/sv.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/th.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/tr.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/uk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/vi.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/zh-CN.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/panichd/js/select2/i18n/zh-TW.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ticket/shared/attach_files_script.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ticket/shared/attach_files_script.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ticket/shared/nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ticket/shared/nav.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ticket/shared/nav_dropdown.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ticket/shared/nav_dropdown.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ticket/tickets/createedit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ticket/tickets/createedit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ticket/tickets/partials/attachment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ticket/tickets/partials/attachment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ticket/tickets/partials/filter_panel.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ticket/tickets/partials/filter_panel.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/ticket.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/ticket.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -162,8 +50,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+            <state relative-caret-position="340">
+              <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
               <folding>
                 <element signature="e#7#38#0#PHP" expanded="true" />
               </folding>
@@ -174,8 +62,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.readme">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="35" />
+            <state relative-caret-position="68">
+              <caret line="4" column="32" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -183,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/seeds/RegionalTableSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="187">
+              <caret line="14" selection-start-line="14" selection-end-line="15" selection-end-column="5" />
               <folding>
                 <element signature="e#7#38#0#PHP" expanded="true" />
               </folding>
@@ -195,8 +83,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/database/seeds/DemoDataSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="21" lean-forward="true" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+            <state relative-caret-position="292">
+              <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+              <folding>
+                <element signature="e#8#31#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -270,8 +161,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file:///usr/bin/composer">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="238">
+              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -288,8 +179,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/seeds/SettingsTableSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="136">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
               <folding>
                 <element signature="e#8#39#0#PHP" expanded="true" />
               </folding>
@@ -321,8 +212,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/seeds/BasicPriorities.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+            <state relative-caret-position="34">
+              <caret line="8" selection-start-line="8" selection-end-line="22" />
               <folding>
                 <element signature="e#7#46#0#PHP" expanded="true" />
               </folding>
@@ -333,8 +224,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/seeds/BasicStatuses.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="-19">
+              <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="34" />
               <folding>
                 <element signature="e#8#47#0#PHP" expanded="true" />
               </folding>
@@ -343,12 +234,20 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/Basic.php">
+        <entry file="file://$PROJECT_DIR$/database/seeds/CategoriesTableSeeders.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+              <folding>
+                <element signature="e#7#30#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/factories/UserFactory.php">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -362,36 +261,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>priorities</find>
-      <find>ticketit</find>
-      <find>hidden</find>
-      <find>department</find>
-      <find>ticketit_settings</find>
-      <find>panic</find>
-      <find>ticketit_departments_persons</find>
-      <find>PanicHDServiceProvider</find>
-      <find>sett</find>
-      <find>hastable</find>
-      <find>panichd_categories_users</find>
-      <find>ategories_users</find>
-      <find>pa_statuses</find>
-      <find>ticketit_</find>
-      <find>lang</find>
-      <find>Setting</find>
-      <find>panichd_tickets</find>
-      <find>panichd_settings</find>
-      <find>DatabaseSeeder</find>
-      <find>SettingsTableSeeder</find>
-      <find>Comment</find>
       <find>Models\</find>
       <find>datetimepicker-format</find>
-      <find>tickets_date_period</find>
-      <find>BasicPriorities</find>
       <find>$a_priorities</find>
       <find>$a_demo_categories</find>
       <find>a_demo_categories</find>
+      <find>categories</find>
       <find>$faker</find>
+      <find>$a_cat_id_agents_id</find>
+      <find>$a_categories</find>
       <find>$a_assigned_agents</find>
+      <find>color_inverse</find>
+      <find>$a_cat_id_tags_id</find>
+      <find>a_closed_status_ids</find>
+      <find>a_active_status_ids</find>
+      <find>tickets_date_period</find>
+      <find>comments_per_ticket_max</find>
+      <find>comments_per_ticket_min</find>
+      <find>gs_per_ticket</find>
+      <find>ickets_per_user_max</find>
+      <find>tickets_per_user_min</find>
+      <find>users_qty</find>
+      <find>agents_per_category</find>
+      <find>agents_qty</find>
+      <find>BasicPriorities</find>
+      <find>a_bg_color</find>
+      <find>agents_qty</find>
+      <find>SettingsTableSeeder</find>
+      <find>Category</find>
+      <find>minutes_per_day</find>
+      <find>minutes_to_day_end</find>
     </findStrings>
     <replaceStrings>
       <replace>App\Model</replace>
@@ -440,7 +339,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/errors/419.blade.php" />
         <option value="$PROJECT_DIR$/app/Translations/en/lang.php" />
         <option value="$PROJECT_DIR$/resources/views/ticket/tickets/show/body.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/RequiredSettingMiddleware.php" />
@@ -484,13 +382,14 @@
         <option value="$PROJECT_DIR$/database/seeds/BasicPriorities.php" />
         <option value="$PROJECT_DIR$/database/seeds/SettingsPatch.php" />
         <option value="$PROJECT_DIR$/database/seeds/BasicStatuses.php" />
-        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/app/Providers/PanicHDServiceProvider.php" />
-        <option value="$PROJECT_DIR$/.readme" />
         <option value="$PROJECT_DIR$/app/Translations/pt_BR/lang.php" />
-        <option value="$PROJECT_DIR$/database/seeds/DemoDataSeeder.php" />
         <option value="$PROJECT_DIR$/.idea/encodings.xml" />
         <option value="$PROJECT_DIR$/routes/ticket.php" />
+        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
+        <option value="$PROJECT_DIR$/.readme" />
+        <option value="$PROJECT_DIR$/database/seeds/CategoriesTableSeeders.php" />
+        <option value="$PROJECT_DIR$/database/seeds/DemoDataSeeder.php" />
       </list>
     </option>
   </component>
@@ -638,6 +537,12 @@
               <item name="atendimento" type="b2602c69:ProjectViewProjectNode" />
               <item name="atendimento" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="factories" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="atendimento" type="b2602c69:ProjectViewProjectNode" />
+              <item name="atendimento" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
               <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -719,7 +624,7 @@
       <workItem from="1546254715584" duration="16474000" />
       <workItem from="1546374632293" duration="594000" />
       <workItem from="1546428722407" duration="9026000" />
-      <workItem from="1546513781452" duration="26685000" />
+      <workItem from="1546513781452" duration="29099000" />
     </task>
     <task id="LOCAL-00001" summary="Ajustes e correções">
       <created>1546032897861</created>
@@ -735,7 +640,14 @@
       <option name="project" value="LOCAL" />
       <updated>1546273029613</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Ajustes e correções">
+      <created>1546553340242</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1546553340242</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -759,7 +671,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134130000" />
+    <option name="totallyTimeSpent" value="136544000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -772,8 +684,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1979" y="0" width="1861" height="1080" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18567494" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18567494" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -788,7 +701,7 @@
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="TeamCity" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.47768596" side_tool="true" weight="0.42055085" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.5223141" visible="true" weight="0.18538135" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.5223141" visible="true" weight="0.34957626" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.3294766" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
@@ -842,13 +755,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/routes/ticket.php</url>
-          <line>5</line>
+          <line>2</line>
           <option name="timeStamp" value="68" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/database/seeds/SettingsTableSeeder.php</url>
-          <line>16</line>
-          <option name="timeStamp" value="74" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -937,18 +845,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/console/Output/ConsoleOutput.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Providers/EventServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-127" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Providers/RouteServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-824" />
@@ -1158,26 +1054,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/RegionalTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-          <folding>
-            <element signature="e#7#38#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/BasicStatuses.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-          <folding>
-            <element signature="e#8#47#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -1209,54 +1085,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.readme">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/bin/composer">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/SettingsTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#8#39#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/BasicPriorities.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding>
-            <element signature="e#7#46#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
-          <folding>
-            <element signature="e#7#38#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1281,10 +1113,90 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/BasicStatuses.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-19">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="34" />
+          <folding>
+            <element signature="e#8#47#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/BasicPriorities.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="8" selection-start-line="8" selection-end-line="22" />
+          <folding>
+            <element signature="e#7#46#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/RegionalTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="14" selection-start-line="14" selection-end-line="15" selection-end-column="5" />
+          <folding>
+            <element signature="e#7#38#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+          <folding>
+            <element signature="e#7#38#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/factories/UserFactory.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file:///usr/bin/composer">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.readme">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="32" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/SettingsTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#8#39#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/CategoriesTableSeeders.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#7#30#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/DemoDataSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="21" lean-forward="true" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+        <state relative-caret-position="292">
+          <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+          <folding>
+            <element signature="e#8#31#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

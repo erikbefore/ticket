@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             SettingsPatch::class,
             BasicPriorities::class,
             BasicStatuses::class,
+            CategoriesTableSeeders::class,
             RegionalTableSeeder::class,
             UfTableSeeder::class,
          ]);
