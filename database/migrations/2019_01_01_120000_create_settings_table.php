@@ -12,12 +12,12 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ticketit_settings', function (Blueprint $table) {
+        Schema::create('panichd_settings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('lang')->unique()->nullable();
+            $table->string('lang')->unique()->nullable()->index();
             $table->string('slug')->unique()->index();
-            $table->string('value');
-            $table->string('default');
+            $table->mediumText('value');
+            $table->mediumText('default');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ticketit_settings');
+        Schema::drop('panichd_settings');
     }
 }

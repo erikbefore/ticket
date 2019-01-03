@@ -36,6 +36,38 @@
 				<div class="jquery_level2_class row" data-class="row"><div class="jquery_level2_class col-md-4" data-class="col-md-4"><!--</div></div>-->
 			@endif
 
+			<!-- UF -->
+			<div class="form-group row" style="margin-bottom: 1.5em">
+
+				<label class="{{ $u->currentLevel()==1 ? 'col-lg-2' : 'col-lg-3' }} level_class col-form-label" data-level-1-class="col-lg-2" data-level-2-class="col-lg-3"> *UF:</label>
+
+				<div class="{{ $u->currentLevel()==1 ? 'col-lg-10' : 'col-lg-9' }} level_class" data-level-1-class="col-lg-10" data-level-2-class="col-lg-9">
+					<select name="uf" class="generate_default_select2 form-control" style="display: none; width: 100%">
+						<option value="">Escolha a UF</option>
+						@foreach ($ufs as $keyUfId => $uf)
+							<option value="{{$keyUfId}}">{{ $uf}} </option>
+						@endforeach
+					</select>
+				</div>
+			</div>
+
+			<!-- Modulos -->
+			<div class="form-group row" style="margin-bottom: 1.5em">
+
+				<label class="{{ $u->currentLevel()==1 ? 'col-lg-2' : 'col-lg-3' }} level_class col-form-label" data-level-1-class="col-lg-2" data-level-2-class="col-lg-3"> *Módulo:</label>
+
+				<div class="{{ $u->currentLevel()==1 ? 'col-lg-10' : 'col-lg-9' }} level_class" data-level-1-class="col-lg-10" data-level-2-class="col-lg-9">
+					<select name="uf" class="generate_default_select2 form-control" style="display: none; width: 100%">
+						<option value="">Escolha a Módulo</option>
+						@foreach ($modulos as $keyModId => $modulo)
+							<option value="{{$keyModId}}">{{ $modulo}} </option>
+						@endforeach
+					</select>
+				</div>
+			</div>
+
+
+
 			<div class="form-group row"><!-- SUBJECT -->
                 {!! CollectiveForm::label('subject', '*' . trans('panichd::lang.subject') . trans('panichd::lang.colon'), [
 					'class' => ($u->currentLevel()==1 ? 'col-lg-2' : 'col-lg-3').' col-form-label level_class',

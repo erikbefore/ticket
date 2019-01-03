@@ -96,7 +96,11 @@ $original =  [
     'table-aria-sort-asc' => ': Classificando coluna Ascendente',
     'table-aria-sort-desc' => ': Classificando coluna Descendente',
 
-    'filter-pov' => 'Vista como',
+    'filter-removeall-title'           => 'Remover todos filtros',
+    'filter-pov' => 'Ver como',
+
+    'filter-pov-agent-title'           => 'Visualizar como um agente',
+    'filter-pov-member-title'          => 'Visualizar como um membro',
 
     'filter-year-all' => 'Todos',
 
@@ -105,7 +109,7 @@ $original =  [
     'filter-calendar-all' => 'Todos',
 
     'filter-calendar-expired' => 'Expirado',
-
+    'filter-calendar-not-scheduled'    => 'Não programado',
     'filter-calendar-today' => 'Expira hoje',
 
     'filter-calendar-tomorrow' => 'Expira amanhã',
@@ -113,6 +117,8 @@ $original =  [
     'filter-calendar-week' => 'Esta semana',
 
     'filter-calendar-month' => 'Este mês',
+    'filter-calendar-within-7-days'    => 'Em 7 dias',
+    'filter-calendar-within-14-days'   => 'Em 14 dias',
 
     'filter-category' => 'Categoria',
 
@@ -161,13 +167,13 @@ $original =  [
     'complete-tickets-adjective' => 'Concluído',
     'created' => 'Criado',
 
-    'crop-image' => 'Colheita de imagens',
+    'crop-image' => 'Imagem recortada',
 
-    'date-format' => 'Y-m-d',
+    'date-format' => 'd/m/Y',
 
-    'datetime-format' => 'Y-m-d H: i',
+    'datetime-format' => 'd-m-Y H: i',
 	
-	'datetimepicker-format' => 'YYYY-MM-DD HH: mm',
+	'datetimepicker-format' => 'DD-MM-YYYY HH: mm',
     'datetime-text'                    => ':date, :timeh',
     'deleted-member'                   => 'Membro excluído',
     'department' => 'Departamento',
@@ -178,7 +184,7 @@ $original =  [
     'description' => 'Descrição',
 
     'discard' => 'Descartar',
-
+    'email'                            => 'E-mail',
     'email-resend-abbr' => 'FW',
     'flash-x' => '×',
 

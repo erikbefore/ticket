@@ -1,9 +1,10 @@
 <?php
 
-// ['web', 'auth']
-//['auth']
-
 use App\Model\Setting;
+
+if (!Schema::hasTable('panichd_settings')) {
+    return;
+}
 
 $main_route = Setting::grab('main_route');
 $main_route_path = Setting::grab('main_route_path');

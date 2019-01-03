@@ -55,6 +55,10 @@ class Setting extends Model
 
             $setting = $settings->where('slug', $slug)->first();
 
+            if(is_null($setting)){
+                return true;
+            }
+
             if ($setting->lang) {
                 return trans($setting->lang);
             }

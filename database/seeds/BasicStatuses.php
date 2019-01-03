@@ -1,12 +1,8 @@
 <?php
 
-namespace PanicHD\PanicHD\Seeds;
-
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
-use PanicHD\PanicHD\Models\Status;
+use App\Model\Status;
 
 class BasicStatuses extends Seeder
 {

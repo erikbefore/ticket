@@ -17,8 +17,8 @@
 
 	<li class="dropdown-divider"></li>
 	
-	@if ($setting->grab('departments_notices_feature'))
-		<a class="dropdown-item {!! $tools->fullUrlIs(action('\App\Http\Controllers\NoticesController@index').'*') ? "active" : "" !!}" href="{{ action('\App\Http\Controllers\NoticesController@index') }}">{{ trans('panichd::admin.nav-notices') }}</a>
-	@endif
+	{{--@if ($setting->grab('departments_notices_feature'))--}}
+		{{--<a class="dropdown-item {!! $tools->fullUrlIs(action('\App\Http\Controllers\NoticesController@index').'*') ? "active" : "" !!}" href="{{ action('\App\Http\Controllers\NoticesController@index') }}">{{ trans('panichd::admin.nav-notices') }}</a>--}}
+	{{--@endif--}}
 	<a class="dropdown-item {!! $tools->fullUrlIs(action('\App\Http\Controllers\ConfigurationsController@index').'*') ? "active" : "" !!}" href="{{ action('\App\Http\Controllers\ConfigurationsController@index') }}">{{ trans('panichd::admin.nav-configuration') }}</a>
 </ul>

@@ -20,6 +20,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->boolean('panichd_admin')->default(0);
+            $table->boolean('panichd_agent')->default(0);
+            $table->boolean('ticketit_department')->nullable();
             $table->timestamps();
         });
     }

@@ -6,6 +6,7 @@ use App\Model\Closingreason;
 use App\Model\Comment;
 use App\Model\Priority;
 use App\Model\Status;
+use App\Model\UF;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -566,8 +567,10 @@ class TicketsController extends Controller
 
             // Visible Agents
             if (session('panichd_filter_category') == '') {
-             //   dd( \PanicHDMember::visible());
-				$filters['agent'] = \PanicHDMember::visible()->get();
+                if(\PanicHDMember::visible()){
+                    $filters['agent'] =\PanicHDMember::visible()->get();
+                }
+
 			}else{
                 $filters['agent']= \PanicHDMember::visible()->whereHas('categories', function ($q1) use ($category) {
                     $q1->where('id', $category);
@@ -812,7 +815,33 @@ class TicketsController extends Controller
 			$a_tags_selected = [];
 		}
 
-		return compact('a_owners', 'priorities', 'status_lists', 'categories', 'agent_lists', 'a_current', 'permission_level', 'tag_lists', 'a_tags_selected');
+		$ufs = array_flip( UF::IDs);
+
+		$modulos = [
+		    1 => 'Cadastro > Banner > Banner  ',
+		    2 => 'Cadastro > usuario > função  ',
+		    3 => 'Cadastro > usuario > usuario  ',
+		    4 => 'Cadastro > venda > pós venda  ',
+		    5 => 'Cadastro > venda > backoffice  ',
+		    6 => 'Cadastro > venda > venda  ',
+		    7 => 'Cadastro > relatório > analítico venda  ',
+		    8 => 'Cadastro > relatório > gráfico vendas  ',
+		    9 => 'Cadastro > relatório > gráfico vendas vivo fixa  ',
+        ];
+
+		return compact(
+		   'a_owners',
+            'priorities',
+            'status_lists',
+            'categories',
+            'agent_lists',
+            'a_current',
+            'permission_level',
+            'tag_lists',
+            'a_tags_selected',
+            'ufs',
+            'modulos'
+        );
 	}
 
 	/**
@@ -1003,6 +1032,7 @@ class TicketsController extends Controller
         $ticket->subject = $request->subject;
 		$ticket->creator_id = auth()->user()->id;
 		$ticket->user_id = $request->owner_id;
+        $ticket->id_uf = UF::IDs[$request->uf];
 
 		if ($permission_level > 1) {
 			$ticket->hidden = $request->hidden;

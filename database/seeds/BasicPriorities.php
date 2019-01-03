@@ -1,7 +1,5 @@
 <?php
 
-namespace PanicHD\PanicHD\Seeds;
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use App\Model\Priority;

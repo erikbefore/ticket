@@ -216,6 +216,17 @@ class Ticket extends Model
     }
 
     /**
+     * Get Ticket uf.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function uf()
+    {
+        return $this->belongsTo('App\Model\UF', 'uf_id');
+    }
+
+
+    /**
      * Get Ticket comments.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

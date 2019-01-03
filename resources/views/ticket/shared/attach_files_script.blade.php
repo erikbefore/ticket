@@ -30,17 +30,21 @@ $(function(){
 				+'<div class="media-body check_related_text">'
 				+'<div><span id="new_attachment_'+num+'_display_new_filename">'+file.name+'</span> <s id="new_attachment_'+num+'_display_original_filename"></s>'
 
+
 				// Button
-				+'<button type="button" role="button" class="btn btn-light btn-xs edit_attachment"';
+				{{--+'<button type="button" role="button" class="btn btn-light btn-xs edit_attachment"';--}}
 
-			if ($('#'+$(this).data('attach-id')).data('new-attachment-modal-id')){
-				html += ' data-modal-id="'+$('#'+$(this).data('attach-id')).data('new-attachment-modal-id')+'"';
-			}else{
-				html += ' data-edit-div="'+$('#'+$(this).data('attach-id')).data('new-attachment-edit-div')+'" data-back-div="'+$('#'+$(this).data('attach-id')).data('new-attachment-back-div')+'"';
-			}
+			{{--if ($('#'+$(this).data('attach-id')).data('new-attachment-modal-id')){--}}
+				{{--html += ' data-modal-id="'+$('#'+$(this).data('attach-id')).data('new-attachment-modal-id')+'"';--}}
+			{{--}else{--}}
+				{{--html += ' data-edit-div="'+$('#'+$(this).data('attach-id')).data('new-attachment-edit-div')+'" data-back-div="'+$('#'+$(this).data('attach-id')).data('new-attachment-back-div')+'"';--}}
+			{{--}--}}
 
-				html +=' data-original_filename="'+file.name+'" data-prefix="new_attachment_'+num+'_" style="margin: 0em 0em 0em 1em;">{{ trans('panichd::lang.btn-edit') }}</button>'
-				+'<input type="hidden" id="new_attachment_'+num+'_new_filename" name="attachment_new_filenames[]" value="'+file.name+'">'
+			{{--html +=' data-original_filename="'+file.name+'" data-prefix="new_attachment_'+num+'_" style="margin: 0em 0em 0em 1em;">{{ trans('panichd::lang.btn-edit') }}</button>'--}}
+
+
+
+			html += '<input type="hidden" id="new_attachment_'+num+'_new_filename" name="attachment_new_filenames[]" value="'+file.name+'">'
 				+'<input type="hidden" id="new_attachment_'+num+'_description" name="attachment_descriptions[]" value="">'
 				+'</div>'
 
@@ -168,7 +172,10 @@ $(function(){
 			);
 
 			if ($('#'+prefix+'image_crop').closest('.media').find('.fa fa-scissors').length == 0){
-				$('#'+prefix+'image_crop').closest('.media').find('.jquery_scissors_previous').after('<span class="fa fa-scissors pull-center" style="margin-left: 0.5em; color: orange;" aria-hidden="true" title="{{ trans('panichd::lang.crop-image') }}"></span>');
+				$('#'+prefix+'image_crop')
+						.closest('.media')
+						.find('.jquery_scissors_previous')
+						.after('<span class="fa fa-scissors pull-center" style="margin-left: 0.5em; color: orange;" aria-hidden="true" title="{{ trans('panichd::lang.crop-image') }}"></span>');
 			}
 		}else{
 			$('#'+prefix+'image_crop').val('');

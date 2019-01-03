@@ -24,7 +24,7 @@ $original =  [
     'table-categories' => 'Categorias',
 
     'table-categories-autoasg-title' => 'Nova atribuição automática de tickets',
-
+    'table-email'                   => 'E-mail',
     'table-magnitude' => 'Magnitude',
 
     'table-num-tickets' => 'Contagem de tickets',
@@ -48,13 +48,15 @@ $original =  [
     'btn-submit' => 'Enviar',
     'btn-save' => 'Salvar',
     'btn-update' => 'Atualizar',
+    'admin' => 'Admin',
     'colon' => ': ',
+    'role'  => 'Função',
 
     'level-1' => 'Todos',
 
     'level-2' => 'agentes atribuídos + administradores.',
-
     'level-3' => 'administradores.',
+
     'index-title' => 'Sistema de Chamados - Dashboard',
     'index-empty-records' => 'Sem Chamados ainda',
     'index-total-tickets' => 'Total de Chamados',
@@ -301,8 +303,17 @@ $adicionados = [
     'nav-administrators'                => 'Administradores',
     'btn-add-new'                       => 'Criar novo',
     'member-delete-confirmation'        => 'Tem certeza que deseja excluir esse usuário?',
+
+    'member-password-label'         => 'Senha',
+    'member-new-password-label'     => 'Nova senha (opcional)',
+    'member-password-repeat-label'  => 'Repita a senha',
+
     'member-modal-create-title'         => 'Criar membro',
-    'member-modal-update-title'         => 'Update membro',
+    'member-modal-update-title'         => 'Atualizar membro',
+
+    'member-index-empty'            => 'Nenhum membro registrado foi encontrado',
+    'member-table-own-tickets'      => 'Tickets Próprios',
+    'member-table-assigned-tickets' => 'Tickets atribuídos',
 ];
 
 

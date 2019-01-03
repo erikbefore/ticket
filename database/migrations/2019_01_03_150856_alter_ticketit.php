@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdatePanichdTicketsAddHidden extends Migration
+class AlterTicketit extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,11 @@ class UpdatePanichdTicketsAddHidden extends Migration
     public function up()
     {
         Schema::table('panichd_tickets', function (Blueprint $table) {
-            $table->integer('hidden')->default('0')->after('subject');
+            $table->unsignedInteger('id_uf')->after('id')->nullable();
+        });
+
+        Schema::table('panichd_tickets', function($table) {
+            $table->foreign('id_uf')->references('id')->on('uf');
         });
     }
 
@@ -26,7 +30,7 @@ class UpdatePanichdTicketsAddHidden extends Migration
     public function down()
     {
         Schema::table('panichd_tickets', function (Blueprint $table) {
-            $table->dropColumn('hidden');
+            $table->dropColumn('id_uf');
         });
     }
 }

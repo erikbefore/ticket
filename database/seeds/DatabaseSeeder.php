@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Seeds\RegionalTableSeeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+         $this->call([
+            SettingsTableSeeder::class,
+            SettingsPatch::class,
+            BasicPriorities::class,
+            BasicStatuses::class,
+            RegionalTableSeeder::class,
+            UfTableSeeder::class,
+         ]);
     }
 }

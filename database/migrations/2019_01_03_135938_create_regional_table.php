@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateUsersTableForDepart extends Migration
+class CreateRegionalTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class UpdateUsersTableForDepart extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('ticketit_department')->nullable();
+        Schema::create('regional', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('descricao', 5)->nullable(false);
+            $table->smallInteger('ordem')->nullable(false);
         });
     }
 
@@ -25,8 +27,8 @@ class UpdateUsersTableForDepart extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('ticketit_department');
+        Schema::table('regional', function (Blueprint $table) {
+            //
         });
     }
 }

@@ -1,9 +1,7 @@
 <?php
 
-namespace PanicHD\PanicHD\Seeds;
-
 use Illuminate\Database\Seeder;
-use PanicHD\PanicHD\Models\Setting;
+use App\Model\Setting;
 
 class SettingsTableSeeder extends Seeder
 {

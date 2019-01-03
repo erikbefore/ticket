@@ -27,8 +27,7 @@ class PanicHDServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (!Schema::hasTable('migrations')) {
-            // Database isn't installed yet.
+        if (!Schema::hasTable('migrations') || !Schema::hasTable('panichd_settings')) {
             return;
         }
         
