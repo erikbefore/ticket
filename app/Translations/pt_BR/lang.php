@@ -472,7 +472,7 @@ $original =  [
     'comment-has-been-updated' => 'O comentário foi atualizado',
 
     'comment-has-been-deleted' => 'O comentário foi excluído',
-    'the-ticket-has-been-created' => 'O Chamado foi Criado!',
+    'the-ticket-has-been-created' => 'O Chamado :name foi Criado!',
     'the-ticket-has-been-modified' => 'O Chamado foi Modificado!',
     'the-ticket-has-been-deleted' => 'O Chamado :name foi Excluido!',
     'the-ticket-has-been-completed' => 'O Chamado :name foi Finalizado!',
