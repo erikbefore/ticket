@@ -292,23 +292,23 @@ class Member extends User
      *
      * @return bool
      */
-	public static function canViewNewTickets()
-	{
-		if (!auth()->check()) return false;
-		$member = \PanicHDMember::find(auth()->user()->id);
-
-		if ($member->isAdmin()){
-			return true;
-		}elseif($member->isAgent() and $member->currentLevel() == 2){
-			if(Setting::grab('agent_restrict')==1){
-				return $member->categories()->wherePivot('autoassign','1')->count()==0 ? false : true;
-			}else{
-				return true;
-			}
-		}else{
-			return false;
-		}
-	}
+//	public static function canViewNewTicketseditadoerik()
+//	{
+//		if (!auth()->check()) return false;
+//		$member = \PanicHDMember::find(auth()->user()->id);
+//
+//		if ($member->isAdmin()){
+//			return true;
+//		}elseif($member->isAgent() and $member->currentLevel() == 2){
+//			if(Setting::grab('agent_restrict')==1){
+//				return $member->categories()->wherePivot('autoassign','1')->count()==0 ? false : true;
+//			}else{
+//				return true;
+//			}
+//		}else{
+//			return false;
+//		}
+//	}
 
 	/**
      * Get directly associated department (ticketit_department)

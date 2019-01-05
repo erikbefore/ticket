@@ -18,6 +18,8 @@ class Category extends Model
      */
     public $timestamps = false;
 
+    const CATEGORY_DEFAULT_BTICKET = 1;
+
 	/**
 	 * Delete all category relations prior of itself
 	*/

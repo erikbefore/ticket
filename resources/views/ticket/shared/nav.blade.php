@@ -2,7 +2,7 @@
 	{{--<a class="nav-link" href="{{ $n_notices == 0 ? '#' : route($setting->grab('main_route').'.notices') }}" title="{{ $n_notices == 0 ? trans('panichd::lang.ticket-notices-empty') : trans('panichd::lang.nav-notices-number-title', ['num' => $n_notices]) }}">{{ trans('panichd::lang.ticket-notices-title') }} <span class="badge">{{ $n_notices }}</span></a>--}}
 {{--</li>--}}
 
-@if($u->canViewNewTickets())
+{{--@if($u->canViewNewTickets())--}}
 	<li class="nav-item dropdown {!! $tools->fullUrlIs(action('\App\Http\Controllers\TicketsController@indexNewest')) || $tools->fullUrlIs(action('\App\Http\Controllers\TicketsController@create')) || (isset($ticket) && $ticket->isNew()) ? "active" : "" !!}">
 		<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="{{ trans('panichd::lang.nav-new-tickets-title') }}">
 			<span>{{ trans('panichd::lang.nav-new-tickets') }}</span>
@@ -16,13 +16,13 @@
 			<a class="dropdown-item {!! $tools->fullUrlIs(action('\App\Http\Controllers\TicketsController@create').'*') ? "active" : "" !!}" href="{{ action('\App\Http\Controllers\TicketsController@create') }}" title="{{ trans('panichd::lang.nav-create-ticket-title') }}">{{ trans('panichd::lang.nav-new-dd-create') }}</a>
 		</ul>
 	</li>
-@else
+{{--@else--}}
 	<li class="nav-item {!! $tools->fullUrlIs(action('\App\Http\Controllers\TicketsController@create')) ? "active" : "" !!}">
 		<a class="nav-link" href="{{ action('\App\Http\Controllers\TicketsController@create') }}" title="{{ trans('panichd::lang.nav-create-ticket-title') }}">
 		<span>{{ trans('panichd::lang.nav-create-ticket') }}</span>
 		</a>
 	</li>
-@endif
+{{--@endif--}}
 
 <li class="nav-item {!! $tools->fullUrlIs(action('\App\Http\Controllers\TicketsController@index')) || (isset($ticket) && $ticket->isActive()) ? "active" : "" !!}">
 	<a class="nav-link" href="{{ action('\App\Http\Controllers\TicketsController@index') }}" title="{{ trans('panichd::lang.nav-active-tickets-title') }}">

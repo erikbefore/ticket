@@ -19,8 +19,10 @@ class DatabaseSeeder extends Seeder
             BasicPriorities::class,
             BasicStatuses::class,
             CategoriesTableSeeders::class,
+             ClosingReasonsSeeder::class,
             RegionalTableSeeder::class,
             UfTableSeeder::class,
+            PermissionsSeeder::class
          ]);
     }
 }

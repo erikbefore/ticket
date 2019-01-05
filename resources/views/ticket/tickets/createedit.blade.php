@@ -37,34 +37,38 @@
 			@endif
 
 			<!-- UF -->
-			<div class="form-group row" style="margin-bottom: 1.5em">
+			@if ($u->canTicketChangeUf())
+				<div class="form-group row" style="margin-bottom: 1.5em">
 
-				<label class="{{ $u->currentLevel()==1 ? 'col-lg-2' : 'col-lg-3' }} level_class col-form-label" data-level-1-class="col-lg-2" data-level-2-class="col-lg-3"> *UF:</label>
+					<label class="{{ $u->currentLevel()==1 ? 'col-lg-2' : 'col-lg-3' }} level_class col-form-label" data-level-1-class="col-lg-2" data-level-2-class="col-lg-3"> *UF:</label>
 
-				<div class="{{ $u->currentLevel()==1 ? 'col-lg-10' : 'col-lg-9' }} level_class" data-level-1-class="col-lg-10" data-level-2-class="col-lg-9">
-					<select name="uf" class="generate_default_select2 form-control" style="display: none; width: 100%">
-						<option value="">Escolha a UF</option>
-						@foreach ($ufs as $keyUfId => $uf)
-							<option value="{{$keyUfId}}" {{ isset($ticket) && $ticket->id_uf == $keyUfId ? 'selected="selected"' : '' }}    >{{ $uf}} </option>
-						@endforeach
-					</select>
+					<div class="{{ $u->currentLevel()==1 ? 'col-lg-10' : 'col-lg-9' }} level_class" data-level-1-class="col-lg-10" data-level-2-class="col-lg-9">
+						<select name="uf" class="generate_default_select2 form-control" style="display: none; width: 100%">
+							<option value="">Escolha a UF</option>
+							@foreach ($ufs as $keyUfId => $uf)
+								<option value="{{$keyUfId}}" {{ isset($ticket) && $ticket->id_uf == $keyUfId ? 'selected="selected"' : '' }}    >{{ $uf}} </option>
+							@endforeach
+						</select>
+					</div>
 				</div>
-			</div>
+			@endif
 
 			<!-- Modulos -->
-			<div class="form-group row" style="margin-bottom: 1.5em">
+			@if ($u->canTicketChangeModule())
+				<div class="form-group row" style="margin-bottom: 1.5em">
 
-				<label class="{{ $u->currentLevel()==1 ? 'col-lg-2' : 'col-lg-3' }} level_class col-form-label" data-level-1-class="col-lg-2" data-level-2-class="col-lg-3"> *Módulo:</label>
+					<label class="{{ $u->currentLevel()==1 ? 'col-lg-2' : 'col-lg-3' }} level_class col-form-label" data-level-1-class="col-lg-2" data-level-2-class="col-lg-3"> *Módulo:</label>
 
-				<div class="{{ $u->currentLevel()==1 ? 'col-lg-10' : 'col-lg-9' }} level_class" data-level-1-class="col-lg-10" data-level-2-class="col-lg-9">
-					<select name="modulo" class="generate_default_select2 form-control" style="display: none; width: 100%">
-						<option value="">Escolha a Módulo</option>
-						@foreach ($modulos as $keyModId => $modulo)
-							<option value="{{$keyModId}}">{{ $modulo}} </option>
-						@endforeach
-					</select>
+					<div class="{{ $u->currentLevel()==1 ? 'col-lg-10' : 'col-lg-9' }} level_class" data-level-1-class="col-lg-10" data-level-2-class="col-lg-9">
+						<select name="modulo" class="generate_default_select2 form-control" style="display: none; width: 100%">
+							<option value="">Escolha a Módulo</option>
+							@foreach ($modulos as $keyModId => $modulo)
+								<option value="{{$keyModId}}">{{ $modulo}} </option>
+							@endforeach
+						</select>
+					</div>
 				</div>
-			</div>
+			@endif
 
 
 
@@ -80,7 +84,9 @@
                 </div>
             </div>
 
-			<div class="form-group row" style="margin-bottom: 1.5em"><!-- OWNER -->
+			<!-- OWNER -->
+			@if ($u->canTicketChangeOwner())
+			<div class="form-group row" style="margin-bottom: 1.5em">
 
 				<label for="owner_id" class="{{ $u->currentLevel()==1 ? 'col-lg-2' : 'col-lg-3' }} level_class col-form-label tooltip-info" data-level-1-class="col-lg-2" data-level-2-class="col-lg-3" title="{{ trans('panichd::lang.create-ticket-owner-help') }}"> *{{trans('panichd::lang.owner')}}{{trans('panichd::lang.colon')}} <span class="fa fa-question-circle" style="color: #bbb"></span></label>
 
@@ -100,6 +106,7 @@
 					</select>
                 </div>
             </div>
+			@endif
 
 			@if ($u->currentLevel() > 1)
 			<div class="jquery_level2_show">
@@ -213,7 +220,9 @@
 			</div>
 			@endif
 
-			<div class="form-group row"><!-- CATEGORY -->
+			<!-- CATEGORY -->
+			@if ($u->canTicketChangeCategory())
+			<div class="form-group row">
 				{!! CollectiveForm::label('category_id', '*' . trans('panichd::lang.category') . trans('panichd::lang.colon'), [
 					'class' => ($u->currentLevel()==1 ? 'col-lg-2' : 'col-lg-3').' col-form-label  level_class',
 					'data-level-1-class' => 'col-lg-2',
@@ -223,6 +232,41 @@
 					{!! CollectiveForm::select('category_id', $categories, $a_current['cat_id'], ['id'=>($u->currentLevel() > 1 ? 'category_change' : 'category_id'), 'class' => 'form-control', 'required' => 'required']) !!}
 				</div>
 			</div>
+			@endif
+
+			<!-- ORIGIN -->
+			@if ($u->canTicketChangeOrigin())
+				<div class="form-group row" style="margin-bottom: 1.5em">
+
+					<label class="{{ $u->currentLevel()==1 ? 'col-lg-2' : 'col-lg-3' }} level_class col-form-label" data-level-1-class="col-lg-2" data-level-2-class="col-lg-3"> *Origem:</label>
+
+					<div class="{{ $u->currentLevel()==1 ? 'col-lg-10' : 'col-lg-9' }} level_class" data-level-1-class="col-lg-10" data-level-2-class="col-lg-9">
+						<select name="origin" class="generate_default_select2 form-control" style="display: none; width: 100%">
+							<option value="">Escolha a origem</option>
+							@foreach ($origins as $origin)
+								<option value="{{$origin->id}}" {{ isset($ticket) && $ticket->origin_id == $origin->id ? 'selected="selected"' : '' }}    >{{ $origin->descricao}} </option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+			@endif
+
+			<!-- TYPE -->
+			@if ($u->canTicketChangeType())
+				<div class="form-group row" style="margin-bottom: 1.5em">
+
+					<label class="{{ $u->currentLevel()==1 ? 'col-lg-2' : 'col-lg-3' }} level_class col-form-label" data-level-1-class="col-lg-2" data-level-2-class="col-lg-3"> *Tipo Suporte:</label>
+
+					<div class="{{ $u->currentLevel()==1 ? 'col-lg-10' : 'col-lg-9' }} level_class" data-level-1-class="col-lg-10" data-level-2-class="col-lg-9">
+						<select name="type" class="generate_default_select2 form-control" style="display: none; width: 100%">
+							<option value="">Escolha</option>
+							@foreach ($types as $type)
+								<option value="{{$type->id}}" {{ isset($ticket) && $ticket->type_id == $type->id ? 'selected="selected"' : '' }}    >{{ $type->descricao}} </option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+			@endif
 
 			@if ($u->currentLevel() > 1)
 			<div class="jquery_level2_show">

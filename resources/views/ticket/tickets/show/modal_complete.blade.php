@@ -41,7 +41,7 @@
 
 				<div class="col-md-9">
 				@foreach ($a_reasons as $id => $reason)
-					<label>{!! CollectiveForm::radio('reason_id',$id) !!} {{ $reason }}</label><br />
+					<label>{!! CollectiveForm::radio('reason_id',$id, true) !!} {{ $reason }}</label><br />
 				@endforeach
 				</div>
 				</div>

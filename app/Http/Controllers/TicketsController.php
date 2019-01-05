@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Model\Closingreason;
 use App\Model\Comment;
+use App\Model\Member;
 use App\Model\Priority;
 use App\Model\Status;
+use App\Model\TicketOrigin;
+use App\Model\TicketType;
 use App\Model\UF;
 use Cache;
 use Carbon\Carbon;
@@ -645,6 +648,8 @@ class TicketsController extends Controller
       }
 
 		$data['categories'] = $this->member->findOrFail(auth()->user()->id)->getNewTicketCategories();
+        $data['origins']  = TicketOrigin::all();
+        $data['types']  = TicketType::all();
 
         return view('panichd::tickets.createedit', $data);
     }
@@ -849,6 +854,9 @@ class TicketsController extends Controller
 	*/
 	protected function validation_common($request, $new_ticket = true)
 	{
+        /**
+         * @var Member
+         */
 		$member = $this->member->find(auth()->user()->id);
 		$category_level = $member->levelInCategory($request->category_id);
 		$permission_level = ($member->currentLevel() > 1 and $category_level > 1) ? $category_level : 1;
@@ -871,13 +879,23 @@ class TicketsController extends Controller
 			$allowed_categories = implode(",", $member->getEditTicketCategories()->keys()->toArray());
 		}
 
-
 		$fields = [
             'subject'     => 'required|min:3',
-			'owner_id'    => 'required|exists:' . $this->member->getTable() . ',id',
-			'category_id' => 'required|in:'.$allowed_categories,
             'content'     => 'required|min:6',
         ];
+
+		if($member->canTicketChangeCategory()){
+            $fields = array_merge($fields, [
+                'category_id' => 'required|in:'.$allowed_categories,
+            ]);
+        }
+
+		if($member->canTicketChangeOwner()){
+            $fields = array_merge($fields, [
+                'owner_id'    => 'required|exists:' . $this->member->getTable() . ',id',
+            ]);
+        }
+
 		$a_result_errors = [];
 
 		if ($permission_level > 1) {
@@ -955,6 +973,7 @@ class TicketsController extends Controller
 			}
         }
 
+
 		// Custom validation messages
 		$custom_messages = [
 			'subject.required'        => trans ('panichd::lang.validate-ticket-subject.required'),
@@ -964,6 +983,22 @@ class TicketsController extends Controller
 			'start_date_year.in'      => trans ('panichd::lang.validate-ticket-start_date'),
 			'limit_date_year.in'      => trans ('panichd::lang.validate-ticket-limit_date'),
 		];
+
+        if($member->canTicketChangeUf()){
+            $fields['uf'] = 'integer';
+
+            $custom_messages = array_merge($custom_messages,[
+                'uf.required' => 'Campo uf é obrigatório'
+            ]);
+        }
+
+        if($member->canTicketChangeModule()){
+            $fields['modulo'] = 'integer';
+
+            $custom_messages = array_merge($custom_messages,[
+                'modulo.required' => 'Campo módulo é obrigatório'
+            ]);
+        }
 
 		// Form validation
         $validator = Validator::make($request->all(), $fields, $custom_messages);
@@ -1023,6 +1058,8 @@ class TicketsController extends Controller
      */
     public function store(Request $request)
     {
+        $member = $this->member->find(auth()->user()->id);
+
 		$common_data = $this->validation_common($request);
 		extract($common_data);
 
@@ -1031,8 +1068,42 @@ class TicketsController extends Controller
 
         $ticket->subject = $request->subject;
 		$ticket->creator_id = auth()->user()->id;
-		$ticket->user_id = $request->owner_id;
-        $ticket->id_uf = $request->uf;
+
+        if($member->canTicketChangeUf()){
+            $ticket->id_uf = $request->uf;
+        }
+
+		$owner_id = $request->owner_id;
+
+		if(!$member->canTicketChangeOwner()){
+            $owner_id = $ticket->creator_id;
+        }
+
+		$ticket->user_id = $owner_id;
+
+        $origin_id = $request->origin;
+
+        if(!$member->canTicketChangeOrigin()){
+            $origin_id = TicketOrigin::ORIGIN_DEFAULT_BTICKET;
+        }
+
+        $ticket->origin_id = $origin_id;
+
+        $type_id = $request->type;
+
+        if(!$member->canTicketChangeType()){
+            $type_id = TicketType::TYPE_DEFAULT_BTICKET;
+        }
+
+        $category_id = $request->category_id;
+
+        if(!$member->canTicketChangeCategory()){
+            $category_id = Category::CATEGORY_DEFAULT_BTICKET;
+        }
+
+        $ticket->category_id = $category_id;
+
+        $ticket->type_id = $type_id;
 
 		if ($permission_level > 1) {
 			$ticket->hidden = $request->hidden;
@@ -1059,8 +1130,6 @@ class TicketsController extends Controller
 		}else{
 			$ticket->limit_date = date('Y-m-d H:i:s', strtotime($request->limit_date));
 		}
-
-		$ticket->category_id = $request->category_id;
 
 		if ($permission_level == 1 or $request->input('agent_id') == 'auto') {
 			$ticket->autoSelectAgent();
@@ -1228,6 +1297,8 @@ class TicketsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $member = $this->member->find(auth()->user()->id);
+
 		$common_data = $this->validation_common($request, false);
 		extract($common_data);
 
@@ -1237,14 +1308,29 @@ class TicketsController extends Controller
 		DB::beginTransaction();
 
         $ticket->subject = $request->subject;
-		$ticket->user_id = $request->owner_id;
+
+        if($member->canTicketChangeOwner()){
+            $ticket->user_id = $request->owner_id;
+        }
+
 		$ticket->hidden = $request->hidden;
-        $ticket->id_uf = $request->uf;
+
+        if($member->canTicketChangeUf()){
+            $ticket->id_uf = $request->uf;
+        }
+
+        if($member->canTicketChangeType()){
+            $ticket->type_id = $request->type;
+        }
+
+        if($member->canTicketChangeOrigin()){
+            $ticket->origin_id = $request->origin;
+        }
 
         $ticket->content = $a_content['content'];
         $ticket->html = $a_content['html'];
 
-		$member = $this->member->find(auth()->user()->id);
+
         if ($member->isAgent() or $member->isAdmin()) {
             $ticket->intervention = $a_intervention['intervention'];
 			$ticket->intervention_html = $a_intervention['intervention_html'];

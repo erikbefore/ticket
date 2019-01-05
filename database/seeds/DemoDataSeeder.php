@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\Role;
 use App\Model\Category;
 use App\Model\Comment;
 use App\Model\Priority;
@@ -33,6 +34,8 @@ class DemoDataSeeder extends Seeder
 			$agent_info->panichd_agent = 1;
 			$agent_info->password = Hash::make($this->default_agent_password);
 			$agent_info->save();
+
+            $agent_info->assignRole([Role::ROLE_COORDENACAO]);
         }
 
         for ($u = 1; $u <= $this->users_qty; $u++) {
@@ -45,6 +48,8 @@ class DemoDataSeeder extends Seeder
             $user_info->panichd_agent = 0;
             $user_info->password = Hash::make($this->default_user_password);
             $user_info->save();
+
+            $user_info->assignRole([Role::ROLE_CLIENTE]);
         }
 
         for ($u = 1; $u <= $this->admin_qty; $u++) {
@@ -58,6 +63,8 @@ class DemoDataSeeder extends Seeder
             $user_info->panichd_admin = 1;
             $user_info->password = Hash::make($this->default_user_password);
             $user_info->save();
+
+            $user_info->assignRole([Role::ROLE_ADMIN]);
         }
     }
 }

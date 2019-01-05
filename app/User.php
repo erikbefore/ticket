@@ -3,13 +3,17 @@
 namespace App;
 
 use App\Notifications\RedefinirSenha;
+use App\Traits\RolePermission;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use RolePermission;
+
+    protected $guard_name = 'web';
 
     /**
      * The attributes that are mass assignable.

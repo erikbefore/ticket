@@ -4,3 +4,6 @@
  - Executar: composer dump-autoload
  - Executar: php artisan db:seed
  - php artisan storage:link
+ - Para popular o BD com usuários executar:  php artisan db:seed --class=DemoDataSeeder
+        - A senha de login padrão é: bticket
+ -
