@@ -1032,7 +1032,7 @@ class TicketsController extends Controller
         $ticket->subject = $request->subject;
 		$ticket->creator_id = auth()->user()->id;
 		$ticket->user_id = $request->owner_id;
-        $ticket->id_uf = UF::IDs[$request->uf];
+        $ticket->id_uf = $request->uf;
 
 		if ($permission_level > 1) {
 			$ticket->hidden = $request->hidden;
@@ -1239,6 +1239,7 @@ class TicketsController extends Controller
         $ticket->subject = $request->subject;
 		$ticket->user_id = $request->owner_id;
 		$ticket->hidden = $request->hidden;
+        $ticket->id_uf = $request->uf;
 
         $ticket->content = $a_content['content'];
         $ticket->html = $a_content['html'];

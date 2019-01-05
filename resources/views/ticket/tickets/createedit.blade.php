@@ -45,7 +45,7 @@
 					<select name="uf" class="generate_default_select2 form-control" style="display: none; width: 100%">
 						<option value="">Escolha a UF</option>
 						@foreach ($ufs as $keyUfId => $uf)
-							<option value="{{$keyUfId}}">{{ $uf}} </option>
+							<option value="{{$keyUfId}}" {{ isset($ticket) && $ticket->id_uf == $keyUfId ? 'selected="selected"' : '' }}    >{{ $uf}} </option>
 						@endforeach
 					</select>
 				</div>
@@ -57,7 +57,7 @@
 				<label class="{{ $u->currentLevel()==1 ? 'col-lg-2' : 'col-lg-3' }} level_class col-form-label" data-level-1-class="col-lg-2" data-level-2-class="col-lg-3"> *Módulo:</label>
 
 				<div class="{{ $u->currentLevel()==1 ? 'col-lg-10' : 'col-lg-9' }} level_class" data-level-1-class="col-lg-10" data-level-2-class="col-lg-9">
-					<select name="uf" class="generate_default_select2 form-control" style="display: none; width: 100%">
+					<select name="modulo" class="generate_default_select2 form-control" style="display: none; width: 100%">
 						<option value="">Escolha a Módulo</option>
 						@foreach ($modulos as $keyModId => $modulo)
 							<option value="{{$keyModId}}">{{ $modulo}} </option>
