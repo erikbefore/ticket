@@ -675,6 +675,10 @@ class TicketsController extends Controller
         $data['origins']  = TicketOrigin::all();
         $data['types']  = TicketType::all();
 
+        if(auth()->user()->isAgent() || auth()->user()->isAdmin()){
+            return view('panichd::tickets.edit', $data);
+        }
+
         return view('panichd::tickets.createedit', $data);
     }
 
