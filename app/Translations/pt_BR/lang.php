@@ -373,7 +373,7 @@ $original =  [
 
     'ticket-hidden-0-comment' => 'O boletim é agora <b> visível </b> para proprietário',
 
-    'ticket-hidden-1-comment-title' => 'Hidratado por <b> :agent </b>',
+    'ticket-hidden-1-comment-title' => 'Escondido por <b> :agent </b>',
 
     'ticket-hidden-1-comment' => 'O boletim é agora <b> escondido </b> para proprietário',
 
