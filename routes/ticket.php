@@ -28,8 +28,7 @@ Route::group(['middleware' =>  ['web',  'auth']], function () use ($main_route, 
 
     // Get newest tickets list
     Route::get("$main_route_path/newest", 'TicketsController@indexNewest')
-        ->name("$main_route-newest")
-        ->middleware('App\Http\Middleware\IsAgentMiddleware');
+        ->name("$main_route-newest");
 
     Route::get("$main_route_path/data/{id?}", 'TicketsController@data')
         ->name("$main_route.data");

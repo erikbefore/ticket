@@ -28,9 +28,9 @@
 		@include('panichd::tickets.partials.modal_agent')
 		@include('panichd::tickets.partials.priority_popover_form')
 
-		@if($ticketList == 'newest')
-			@include('panichd::tickets.datatable.modal_page_reload')
-		@endif
+		{{--@if($ticketList == 'newest')--}}
+			{{--@include('panichd::tickets.datatable.modal_page_reload')--}}
+		{{--@endif--}}
 	@stop
 
 	@section('footer')

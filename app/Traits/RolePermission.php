@@ -9,9 +9,7 @@ trait RolePermission
     use HasRoles;
 
     public function getPermissionsExisting(){
-
-        $refl = new \ReflectionClass('\App\Helpers\Permission');
-        return $refl->getConstants();
+        return \App\Helpers\Permission::getPermissionsExisting();
     }
 
     public function canTicketChangeUf(){

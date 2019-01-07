@@ -2,11 +2,12 @@
 
 $original =  [
 
-    'nav-new-tickets' => 'Novo',
+    'nav-new-tickets' => 'Novos',
 
     'nav-new-tickets-title' => 'Novos tickets',
 
     'nav-new-dd-list' => 'Lista',
+    'nav-new-dd-list-title' => 'Lista novos tickets',
 
     'nav-new-dd-create' => 'Criar',
 
@@ -142,7 +143,7 @@ $original =  [
     'btn-mark-complete' => 'Concluido',
     'btn-submit' => 'Enviar',
 
-    'active-tickets-adjective' => 'Ativo',
+    'active-tickets-adjective' => 'Em andamento',
     'agent' => 'Agente',
 
     'agents' => 'Agentes',
@@ -164,7 +165,7 @@ $original =  [
 
     'complete' => 'Completo',
 
-    'complete-tickets-adjective' => 'Concluído',
+    'complete-tickets-adjective' => 'Finalizados',
     'created' => 'Criado',
 
     'crop-image' => 'Imagem recortada',
@@ -330,6 +331,7 @@ $original =  [
     'show-ticket-js-delete' => 'Tem certeza que deseja excluir: ',
     'show-ticket-modal-delete-title' => 'Excluir Chamado',
     'show-ticket-modal-delete-message' => 'Tem certeza que deseja excluir Chamado: :subject?',
+    'show-ticket-modal-edit-fields'    => 'Editar mais campos',
 
     'show-ticket-modal-complete-blank-intervention-check' => 'Deixe a intervenção em branco',
 
@@ -476,7 +478,7 @@ $original =  [
     'the-ticket-has-been-modified' => 'O Chamado foi Modificado!',
     'the-ticket-has-been-deleted' => 'O Chamado :name foi Excluido!',
     'the-ticket-has-been-completed' => 'O Chamado :name foi Finalizado!',
-    'the-ticket-has-been-reopened' => 'O Chamado :name foi Re-aberto!',
+    'the-ticket-has-been-reopened' => 'O Chamado :name foi Reaberto!',
 
     'ticket-status-link-title' => 'Ver ticket',
     'you-are-not-permitted-to-do-this' => 'Você não tem permissão para esta Ação!',

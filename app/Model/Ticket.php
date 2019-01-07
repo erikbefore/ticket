@@ -97,12 +97,7 @@ class Ticket extends Model
     public function scopeActive($query)
     {
         $query = $query->whereNull('completed_at');
-
-        if (is_null(auth()->user()) or \PanicHDMember::find(auth()->user()->id)->currentLevel() < 2){
-            return $query;
-        }else{
-            return $query->where('status_id', '!=', Setting::grab('default_status_id'));
-        }
+        return $query->where('status_id', '!=', Setting::grab('default_status_id'));
     }
 	
     /**

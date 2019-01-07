@@ -179,7 +179,7 @@ class SettingsTableSeeder extends Seeder
              * The default priority for new tickets
              * Default: 1
              */
-            'default_priority_id' => 1,
+            'default_priority_id' => 3,
             /*
              * The default status for new tickets
              * Default: 1

@@ -8,11 +8,11 @@ class BasicStatuses extends Seeder
 {
 	public $statuses = [		
 		'Novo' => '#319df8',
-		'Aberto' => '#ffbc1b',
+		'Em andamento' => '#ffbc1b',
 		'Pendente Cliente' => '#df32f9',
-		'Pendente Desenvolvimento' => '#df32f9',
-		'Pendente Geral' => '#df32f9',
-		'Resolvido' => '4bcd540'
+		'Em Desenvolvimento' => '#df32f9',
+		'Pendente Parceiro' => '#df32f9',
+		'Finalizado' => '4bcd540'
     ];
 
     /**

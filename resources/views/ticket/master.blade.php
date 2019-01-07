@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Bticket') }}</title>
 
     <!-- Scripts -->
     <script>
@@ -53,16 +53,20 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" href="{{ url('/logout') }}"
-                                   onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                    Logout
+                                <a class="dropdown-item">
+                                    {{ Auth::user()->email }}
                                 </a>
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-outline-danger"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit(); this.disable = true;">
+                                Logout
+                            </button>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                         </li>
                     @endif
                 </ul>
@@ -75,7 +79,6 @@
 	</div>
 
     <!-- Scripts -->
-    
 	@yield('footer')
 </body>
 </html>

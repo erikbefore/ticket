@@ -1,11 +1,6 @@
 <?php
 
 use App\Helpers\Role;
-use App\Model\Category;
-use App\Model\Comment;
-use App\Model\Priority;
-use App\Model\Ticket;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -35,7 +30,7 @@ class DemoDataSeeder extends Seeder
 			$agent_info->password = Hash::make($this->default_agent_password);
 			$agent_info->save();
 
-            $agent_info->assignRole([Role::ROLE_COORDENACAO]);
+            $agent_info->assignRole([Role::ROLE_SUPORTE]);
         }
 
         for ($u = 1; $u <= $this->users_qty; $u++) {

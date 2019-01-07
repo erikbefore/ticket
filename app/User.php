@@ -4,6 +4,7 @@ namespace App;
 
 use App\Notifications\RedefinirSenha;
 use App\Traits\RolePermission;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Notifications\Notifiable;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,6 +15,7 @@ class User extends Authenticatable
     use RolePermission;
 
     protected $guard_name = 'web';
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -37,5 +39,6 @@ class User extends Authenticatable
     {
         $this->notify(new RedefinirSenha($token));
     }
+
 
 }

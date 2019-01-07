@@ -8,7 +8,7 @@ use App\Model\Category;
 
 class Member extends User
 {
-    protected $table = 'users';
+
 
 	/**
      * list of all agents and returning collection.

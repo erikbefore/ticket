@@ -19,21 +19,33 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/tickets';
+    protected $member;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(\PanicHDMember $member)
     {
         $this->middleware('guest')->except('logout');
+
+        $this->member = $member;
+    }
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @retun string
+     */
+    public function redirectTo(){
+
+        $redirect = '/tickets/newest';
+
+        if($this->member->isAdmin()){
+            $redirect = '/admin/dashboard';
+        }
+
+        return $redirect;
     }
 }

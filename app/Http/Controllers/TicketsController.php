@@ -57,7 +57,7 @@ class TicketsController extends Controller
 		$datatables = app(\Yajra\Datatables\Datatables::class);
 
 
-        $agent = $this->member->find(auth()->user()->id);
+        $agent = auth()->user();
 
         $collection = Ticket::inList($ticketList)->visible()->filtered($ticketList);
 
@@ -647,7 +647,7 @@ class TicketsController extends Controller
          $data = $this->ticket_URL_parameters($data, $parameters);
       }
 
-		$data['categories'] = $this->member->findOrFail(auth()->user()->id)->getNewTicketCategories();
+		$data['categories'] = auth()->user()->getNewTicketCategories();
         $data['origins']  = TicketOrigin::all();
         $data['types']  = TicketType::all();
 
@@ -671,7 +671,9 @@ class TicketsController extends Controller
 
         $data['ticket'] = $ticket;
 
-        $data['categories'] = $this->member->findOrFail(auth()->user()->id)->getEditTicketCategories();
+        $data['categories'] = auth()->user()->getEditTicketCategories();
+        $data['origins']  = TicketOrigin::all();
+        $data['types']  = TicketType::all();
 
         return view('panichd::tickets.createedit', $data);
     }
@@ -702,7 +704,7 @@ class TicketsController extends Controller
 
 	public function create_edit_data($ticket = false, $a_parameters = false)
 	{
-		$member = $this->member->find(auth()->user()->id);
+		$member = auth()->user();
 
 		if ($member->currentLevel() > 1){
 			$a_owners = \PanicHDMember::with('userDepartment')->orderBy('name')->get();
@@ -857,7 +859,7 @@ class TicketsController extends Controller
         /**
          * @var Member
          */
-		$member = $this->member->find(auth()->user()->id);
+		$member = auth()->user();
 		$category_level = $member->levelInCategory($request->category_id);
 		$permission_level = ($member->currentLevel() > 1 and $category_level > 1) ? $category_level : 1;
 
@@ -935,7 +937,7 @@ class TicketsController extends Controller
 				}
 			}
 
-			if ($request->has('limit_date')){
+			if ($request->has('limit_date') && $request->limit_date){
 				\Datetime::createFromFormat(trans('panichd::lang.datetime-format'), $request->input('limit_date'));
 				$errors = \DateTime::getLastErrors();
 
@@ -982,10 +984,11 @@ class TicketsController extends Controller
 			'content.min'             => trans ('panichd::lang.validate-ticket-content.min'),
 			'start_date_year.in'      => trans ('panichd::lang.validate-ticket-start_date'),
 			'limit_date_year.in'      => trans ('panichd::lang.validate-ticket-limit_date'),
+			'limit_date_year.in'      => trans ('panichd::lang.validate-ticket-limit_date'),
 		];
 
         if($member->canTicketChangeUf()){
-            $fields['uf'] = 'integer';
+            $fields['uf'] = 'required';
 
             $custom_messages = array_merge($custom_messages,[
                 'uf.required' => 'Campo uf é obrigatório'
@@ -993,14 +996,30 @@ class TicketsController extends Controller
         }
 
         if($member->canTicketChangeModule()){
-            $fields['modulo'] = 'integer';
+//            $fields['modulo'] = 'required';
+//
+//            $custom_messages = array_merge($custom_messages,[
+//                'modulo.required' => 'Campo módulo é obrigatório'
+//            ]);
+        }
+
+        if($member->canTicketChangeOrigin()){
+            $fields['origin'] = 'required';
 
             $custom_messages = array_merge($custom_messages,[
-                'modulo.required' => 'Campo módulo é obrigatório'
+                'origin.required' => 'Campo Origem é obrigatório'
             ]);
         }
 
-		// Form validation
+        if($member->canTicketChangeType()){
+            $fields['type'] = 'required';
+
+            $custom_messages = array_merge($custom_messages,[
+                'type.required' => 'Campo Tipo Suporte é obrigatório'
+            ]);
+        }
+
+        // Form validation
         $validator = Validator::make($request->all(), $fields, $custom_messages);
 
 		if ($validator->fails()) {
@@ -1058,7 +1077,8 @@ class TicketsController extends Controller
      */
     public function store(Request $request)
     {
-        $member = $this->member->find(auth()->user()->id);
+        $member = auth()->user();
+
 
 		$common_data = $this->validation_common($request);
 		extract($common_data);
@@ -1116,8 +1136,7 @@ class TicketsController extends Controller
 			$ticket->priority_id = $request->priority_id;
 		}else{
 			$ticket->status_id = Setting::grab('default_status_id');
-			$default_priority_id = Setting::grab('default_priority_id');
-			$ticket->priority_id = $default_priority_id == 0 ? Priority::first()->id : $default_priority_id;
+			$ticket->priority_id = Setting::grab('default_priority_id');
 		}
 
 		if ($request->start_date != ""){
@@ -1217,7 +1236,7 @@ class TicketsController extends Controller
      */
     public function show($id)
     {
-		$user = $this->member->find(auth()->user()->id);
+		$user = auth()->user();
 		$members_table = $this->member->getTable();
 
 		$ticket = $this->tickets
@@ -1297,7 +1316,7 @@ class TicketsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $member = $this->member->find(auth()->user()->id);
+        $member = auth()->user();
 
 		$common_data = $this->validation_common($request, false);
 		extract($common_data);
@@ -1489,7 +1508,7 @@ class TicketsController extends Controller
         if ($this->permToClose($id) == 'yes') {
             $original_ticket = $this->tickets->findOrFail($id);
 			$ticket = clone $original_ticket;
-			$member = $this->member->find(auth()->user()->id);
+			$member = auth()->user();
 
 			if ($ticket->hidden and $member->currentLevel() == 1){
 				return redirect()->route(Setting::grab('main_route').'.index')->with('warning', trans('panichd::lang.you-are-not-permitted-to-access'));
@@ -1619,7 +1638,7 @@ class TicketsController extends Controller
     {
         if ($this->permToReopen($id) == 'yes') {
             $ticket = $this->tickets->findOrFail($id);
-			$member = $this->member->find(auth()->user()->id);
+			$member = auth()->user();
 
             $ticket->completed_at = null;
 
@@ -1775,9 +1794,9 @@ class TicketsController extends Controller
 	*/
 	public function hide_actions($ticket)
 	{
-		$member = $this->member->find(auth()->user()->id);
+	    $idUser = auth()->user()->id;
 
-		$latest = Comment::where('ticket_id', $ticket->id)->where('user_id', $member->id)->orderBy('id', 'desc')->first();
+		$latest = Comment::where('ticket_id', $ticket->id)->where('user_id', $idUser)->orderBy('id', 'desc')->first();
 
 		if ($latest and in_array($latest->type, ['hide_0', 'hide_1'])){
 			// Delete last comment for consecutive ticket hide and show for user
@@ -1790,7 +1809,7 @@ class TicketsController extends Controller
 		$comment->type = "hide_".$ticket->hidden;
 		$comment->content = $comment->html = trans('panichd::lang.ticket-hidden-'.$ticket->hidden.'-comment');
 		$comment->ticket_id = $ticket->id;
-		$comment->user_id = $member->id;
+		$comment->user_id = $idUser;
 		$comment->save();
 	}
 
@@ -1799,7 +1818,7 @@ class TicketsController extends Controller
 	*/
 	public function permissionLevel ($category_id)
 	{
-		$user = $this->member->find(auth()->user()->id);
+		$user = auth()->user();
 
 		return $user->levelInCategory($category_id);
 	}
@@ -1812,7 +1831,7 @@ class TicketsController extends Controller
      */
     public function permToClose($id)
     {
-        $user = $this->member->find(auth()->user()->id);
+        $user = auth()->user();
 
 		return $user->canCloseTicket($id) ? "yes" : "no";
     }
