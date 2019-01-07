@@ -192,7 +192,7 @@ $original =  [
     'intervention' => 'Intervenção',
     'last-update' => 'Última Atualização',
 
-    'limit-date' => 'Data-limite',
+    'limit-date' => 'Data limite',
 
     'list' => 'Lista',
     'mark-complete'                    => 'Concluir',
@@ -225,7 +225,7 @@ $original =  [
 
     'year' => 'Ano',
 
-    'yes' => 'sim',
+    'yes' => 'Sim',
 
     'yesterday' => 'Ontem',
 
@@ -437,15 +437,15 @@ $original =  [
 
     'validate-ticket-content.min' => 'A descrição deve ser mais longa, embora haja alguma imagem anexada',
 
-    'validate-ticket-start_date-format' => 'O formato da data de início não é válido. O correto é: ":format"',
+    'validate-ticket-start_date-format' => 'Data de início inválida. O correto é: ":format"',
 
     'validate-ticket-start_date' => 'O ano da data de início não é válido',
 
-    'validate-ticket-limit_date-format' => 'O formato da data limite não é válido. O correto é: ":format"',
+    'validate-ticket-limit_date-format' => 'Data limite inválida. O correto é: ":format"',
 
-    'validate-ticket-limit_date' => 'O ano da data-limite não é válido',
+    'validate-ticket-limit_date' => 'O ano da data limite não é válido',
 
-    'validate-ticket-limit_date-lower' => 'A data-limite não pode ser inferior à data de início',
+    'validate-ticket-limit_date-lower' => 'A data limite não pode ser inferior à data de início',
 
     'ticket-destroy-error' => 'O ticket não pôde ser excluído: :error',
 

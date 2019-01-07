@@ -12,7 +12,8 @@ class BasicStatuses extends Seeder
 		'Pendente Cliente' => '#df32f9',
 		'Em Desenvolvimento' => '#df32f9',
 		'Pendente Parceiro' => '#df32f9',
-		'Finalizado' => '4bcd540'
+		'Finalizado' => '4bcd540',
+		'Reaberto' => '#df32f9'
     ];
 
     /**
