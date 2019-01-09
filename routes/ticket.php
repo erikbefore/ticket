@@ -17,6 +17,9 @@ $admin_route_path = Setting::grab('admin_route_path');
 //use App\Model\Setting;
 //use Illuminate\Support\Facades\Route;
 
+Route::get("modulo/search", 'ModuloController@search')->name("modulo.search");
+
+
 
 Route::group(['middleware' =>  ['web',  'auth']], function () use ($main_route, $main_route_path, $admin_route, $admin_route_path) {
 

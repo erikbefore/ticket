@@ -7,6 +7,7 @@ use App\Model\Comment;
 use App\Model\Member;
 use App\Model\Priority;
 use App\Model\Status;
+use App\Model\Syscor\Modulo;
 use App\Model\TicketOrigin;
 use App\Model\TicketType;
 use App\Model\UF;
@@ -817,28 +818,31 @@ class TicketsController extends Controller
 			$a_tags_selected = old('category_'.old('category_id').'_tags');
 
 		}elseif($ticket){
-			if (version_compare(app()->version(), '5.3.0', '>=')) {
-				$a_tags_selected = $ticket->tags()->pluck('id')->toArray();
-			} else { // if Laravel 5.1
-				$a_tags_selected = $ticket->tags()->lists('id')->toArray();
-			}
+                $a_tags_selected = $ticket->tags()->pluck('id')->toArray();
 		}else{
 			$a_tags_selected = [];
 		}
 
 		$ufs = array_flip( UF::IDs);
 
-		$modulos = [
-		    1 => 'Cadastro > Banner > Banner  ',
-		    2 => 'Cadastro > usuario > função  ',
-		    3 => 'Cadastro > usuario > usuario  ',
-		    4 => 'Cadastro > venda > pós venda  ',
-		    5 => 'Cadastro > venda > backoffice  ',
-		    6 => 'Cadastro > venda > venda  ',
-		    7 => 'Cadastro > relatório > analítico venda  ',
-		    8 => 'Cadastro > relatório > gráfico vendas  ',
-		    9 => 'Cadastro > relatório > gráfico vendas vivo fixa  ',
-        ];
+        $mod_name = '';
+
+        if($ticket && $ticket->mod_id){
+            $mod_name = Modulo::select(
+                [
+                    "mod_id",
+                    "mod_nome",
+                    "sub_nome",
+                    "me_nome"
+                ])
+                ->where('mod_id', '=', $ticket->mod_id)
+                ->join('menu_sub AS sub', 'sub.sub_id', '=', 'modulo.sub_id')
+                ->join('menu AS me', 'me.me_id', '=', 'sub.me_id')
+                ->orderBy(\DB::raw(" me.me_ordem ASC, me.me_nome ASC, sub.sub_nome ASC, mod_nome "))
+                ->first();
+
+            $mod_name = utf8_encode("{$mod_name->me_nome} > $mod_name->sub_nome > $mod_name->mod_nome");
+        }
 
 		return compact(
 		   'a_owners',
@@ -851,7 +855,7 @@ class TicketsController extends Controller
             'tag_lists',
             'a_tags_selected',
             'ufs',
-            'modulos'
+            'mod_name'
         );
 	}
 
@@ -1000,11 +1004,11 @@ class TicketsController extends Controller
         }
 
         if($member->canTicketChangeModule()){
-//            $fields['modulo'] = 'required';
-//
-//            $custom_messages = array_merge($custom_messages,[
-//                'modulo.required' => 'Campo módulo é obrigatório'
-//            ]);
+            $fields['modulo'] = 'required';
+
+            $custom_messages = array_merge($custom_messages,[
+                'modulo.required' => 'Campo módulo é obrigatório'
+            ]);
         }
 
         if($member->canTicketChangeOrigin()){
@@ -1095,6 +1099,10 @@ class TicketsController extends Controller
 
         if($member->canTicketChangeUf()){
             $ticket->id_uf = $request->uf;
+        }
+
+        if($member->canTicketChangeModule()){
+            $ticket->mod_id = $request->modulo;
         }
 
 		$owner_id = $request->owner_id;
@@ -1348,6 +1356,10 @@ class TicketsController extends Controller
 
         if($member->canTicketChangeOrigin()){
             $ticket->origin_id = $request->origin;
+        }
+
+        if($member->canTicketChangeModule()){
+            $ticket->mod_id = $request->modulo;
         }
 
         $ticket->content = $a_content['content'];

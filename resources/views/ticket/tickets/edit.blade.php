@@ -22,7 +22,7 @@
 
                 @if ($u->currentLevel() > 1)
 
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-1">
                         <label class="tooltip-info"
                                title="{{ trans('panichd::lang.create-ticket-visible-help') }}">{{ trans('panichd::lang.create-ticket-visible') . trans('panichd::lang.colon') }}
                             <span class="fa fa-question-circle" style="color: #bbb"></span></label>
@@ -43,11 +43,23 @@
                     </div>
                 @endif
 
+
+
             <!-- SUBJECT -->
-                <div class="form-group  col-md-10">
+                <div class="form-group  col-md-7">
                     {!! CollectiveForm::label('subject', '*' . trans('panichd::lang.subject') . trans('panichd::lang.colon')) !!}
                     {!! CollectiveForm::text('subject',  $ticket->subject , ['class' => 'form-control', 'required' => 'required', 'placeholder' => trans('panichd::lang.create-ticket-brief-issue')]) !!}
                 </div>
+
+            <!-- Modulos -->
+            @if ($u->canTicketChangeModule())
+                <div class="form-group col-md-4">
+                    <label> *Módulo:</label>
+                    <input name="modulo_aux" id="modulo_aux" class="form-control input-lg completedrop" value="{{$mod_name}}" placeholder="Digite o Módulo" autocomplete="off">
+                    <input type="hidden" name="modulo" id="modulo" value="{{$ticket->mod_id}}">
+                </div>
+            @endif
+
 
                 <!-- UF -->
                 @if ($u->canTicketChangeUf())
@@ -57,19 +69,6 @@
                             <option value="">Escolha a UF</option>
                             @foreach ($ufs as $keyUfId => $uf)
                                 <option value="{{$keyUfId}}" {{ isset($ticket) && $ticket->id_uf == $keyUfId ? 'selected="selected"' : '' }} >{{ $uf}} </option>
-                            @endforeach
-                        </select>
-                    </div>
-                @endif
-
-            <!-- Modulos -->
-                @if ($u->canTicketChangeModule())
-                    <div class="form-group col-md-2">
-                        <label> *Módulo:</label>
-                        <select name="modulo" class=" form-control">
-                            <option value="">Escolha a Módulo</option>
-                            @foreach ($modulos as $keyModId => $modulo)
-                                <option value="{{$keyModId}}">{{ $modulo}} </option>
                             @endforeach
                         </select>
                     </div>
@@ -97,6 +96,8 @@
                     </div>
                 @endif
 
+
+
                 @if ($u->currentLevel() > 1)
 
                 <!-- STATUS -->
@@ -111,6 +112,20 @@
                         {!! CollectiveForm::label('priority', trans('panichd::lang.priority') . trans('panichd::lang.colon')) !!}
                         {!! CollectiveForm::select('priority_id', $priorities, $a_current['priority_id'], ['class' => 'form-control', 'required' => 'required']) !!}
                     </div>
+
+                    <!-- ORIGIN -->
+                    @if ($u->canTicketChangeOrigin())
+                        <div class="form-group col-md-2">
+                            <label>*Origem:</label>
+                            <select name="origin" class=" form-control">
+                                <option value="">Escolha a origem</option>
+                                @foreach ($origins as $origin)
+                                    <option value="{{$origin->id}}" {{ isset($ticket) && $ticket->origin_id == $origin->id ? 'selected="selected"' : '' }} >{{ $origin->descricao}} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    @endif
+
 
                     <div class="form-group col-md-4 ">
                         {!! CollectiveForm::label('start_date', trans('panichd::lang.start-date') . trans('panichd::lang.colon')) !!}
@@ -148,18 +163,6 @@
                     </div>
                 @endif
 
-            <!-- ORIGIN -->
-                @if ($u->canTicketChangeOrigin())
-                    <div class="form-group col-md-2">
-                        <label>*Origem:</label>
-                        <select name="origin" class=" form-control">
-                            <option value="">Escolha a origem</option>
-                            @foreach ($origins as $origin)
-                                <option value="{{$origin->id}}" {{ isset($ticket) && $ticket->origin_id == $origin->id ? 'selected="selected"' : '' }} >{{ $origin->descricao}} </option>
-                            @endforeach
-                        </select>
-                    </div>
-                @endif
 
             <!-- TYPE -->
                 @if ($u->canTicketChangeType())
@@ -248,6 +251,8 @@
         {!! CollectiveForm::close() !!}
     </div>
 @endsection
+
+
 
 @include('panichd::tickets.partials.modal_attachment_edit')
 @include('panichd::shared.photoswipe_files')
@@ -385,6 +390,59 @@
                 $('#start_date').data("DateTimePicker").maxDate(e.date);
             });
         });
+
+        function dropAutoComplete(idCampo, route) {
+
+            var idCampoAux = idCampo + '_aux';
+
+            widgetInst = $('#' + idCampoAux).autocomplete({
+                minLength: 3,
+                delay: 1000,
+                html:true,
+                source: function( request, response ) {
+                    $.ajax({
+                        url: route,
+                        dataType: "json",
+                        data: {
+                            term : request.term
+                        },
+                        success: function(data) {
+                            var array = $.map(data, function (item) {
+                                return {
+                                    value: item.id,
+                                    label: item.label,
+                                    data : item
+                                }
+                            });
+                            response(array)
+                        }
+                    });
+                },
+                select: function (event, ui) {
+
+                    var data = ui.item.data;
+
+                    if(data){
+                        $("#" + idCampoAux).val(data.label);
+                        $("#" + idCampo).val(data.id);
+                    }
+
+                    event.preventDefault();
+                }
+            }).data('ui-autocomplete');
+
+
+            widgetInst._renderItem  = function (ul, item) {
+
+                return $("<li></li>")
+                    .data("item.autocomplete", item)
+                    .append("<a>" + item.label + "</a>")
+                    .appendTo(ul);
+            };
+        }
+
+        dropAutoComplete('modulo', "{{ route('modulo.search') }}");
+
     </script>
     @include('panichd::tickets.partials.tags_footer_script')
 @append
