@@ -24,16 +24,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56898fa4-9caa-4ef1-ab09-dc96a629df70" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ModuloController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Model/Syscor/Modulo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_01_09_210308_alter_ticket.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendor/panichd/css/jqueryui/1.12.1/jquery-ui.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TicketsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TicketsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ticket/shared/assets.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ticket/shared/assets.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ticket/tickets/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ticket/tickets/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/ticket.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/ticket.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,20 +52,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/NotificationsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="281" column="58" selection-start-line="281" selection-start-column="58" selection-end-line="281" selection-end-column="58" />
+            <state relative-caret-position="356">
+              <caret line="293" column="8" lean-forward="true" selection-start-line="293" selection-start-column="8" selection-end-line="293" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Helpers/Permission.php">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="62" />
+            <state relative-caret-position="210">
+              <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -364,7 +355,6 @@
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/app/Model/Setting.php" />
         <option value="$PROJECT_DIR$/resources/views/ticket/tickets/show/modal_complete.blade.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/Traits/RolePermission.php" />
         <option value="$PROJECT_DIR$/app/Helpers/Permission.php" />
         <option value="$PROJECT_DIR$/resources/views/ticket/shared/nav.blade.php" />
@@ -393,6 +383,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/ModuloController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TicketsController.php" />
         <option value="$PROJECT_DIR$/resources/views/ticket/tickets/edit.blade.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -638,7 +629,7 @@
       <workItem from="1546898890918" duration="5849000" />
       <workItem from="1546946360681" duration="4733000" />
       <workItem from="1547031863962" duration="18511000" />
-      <workItem from="1547069335376" duration="2453000" />
+      <workItem from="1547069335376" duration="2471000" />
     </task>
     <task id="LOCAL-00001" summary="Ajustes e correções">
       <created>1546032897861</created>
@@ -703,7 +694,14 @@
       <option name="project" value="LOCAL" />
       <updated>1546903818153</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Ajustes e correções">
+      <created>1547072799555</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1547072799555</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -727,7 +725,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222853000" />
+    <option name="totallyTimeSpent" value="222871000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -740,8 +738,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1973" y="0" width="1867" height="1080" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15376167" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15376167" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -758,7 +757,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.4787472" side_tool="true" weight="0.28222525" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.5212528" weight="0.26588982" />
       <window_info anchor="bottom" id="Messages" order="12" />
-      <window_info active="true" anchor="bottom" id="Debug" order="13" sideWeight="0.5824012" visible="true" weight="0.42478815" />
+      <window_info anchor="bottom" id="Debug" order="13" sideWeight="0.5824012" visible="true" weight="0.42478815" />
       <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.3294766" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -1040,13 +1039,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
@@ -1418,8 +1410,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/NotificationsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="281" column="58" selection-start-line="281" selection-start-column="58" selection-end-line="281" selection-end-column="58" />
+        <state relative-caret-position="356">
+          <caret line="293" column="8" lean-forward="true" selection-start-line="293" selection-start-column="8" selection-end-line="293" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
         </state>
       </provider>
     </entry>
