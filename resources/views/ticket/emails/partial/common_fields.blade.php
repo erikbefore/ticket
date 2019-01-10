@@ -14,7 +14,7 @@
 		<span>{{ trans('panichd::lang.'.($ticket->isComplete() ? 'complete-tickets-adjective' : 'active-tickets-adjective')) }}</span>
 	</li><li>
 		<b>{{ trans('panichd::lang.status') . trans('panichd::lang.colon') }}</b>
-		@if ($original_ticket->status->id != $ticket->status->id)
+		@if ($original_ticket->status && $original_ticket->status->id != $ticket->status->id)
 			<strike>{{ $original_ticket->status->name }}</strike> 
 		@endif
 		<span style="color: {{ $ticket->status->color }};">{{ $ticket->status->name }}</span>

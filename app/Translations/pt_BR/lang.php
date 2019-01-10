@@ -73,9 +73,10 @@ $original =  [
 
     'calendar-scheduled-period' => 'Programado de :date1 para :date2',
 
+    // Agent related
     'table-change-agent' => 'Agente de mudança',
-
     'table-one-agent' => 'Existe um agente nesta categoria',
+    'table-agent-status-check'         => 'Alterar status para ":status"',
 
     'table-change-priority' => 'Alterar prioridade',
     'table-decimal' => '',
@@ -275,13 +276,13 @@ $original =  [
     'page-reload-modal-reloading'      => 'Esta página está recarregando ... por favor aguarde',
     'page-reload-modal-button-now'     => 'Recarregar agora!',
 
-    'update-agent-same' => 'O agente não foi alterado! Ticket < a href=": link " title="quot; title" > < u >: name < / u > < / a >',
+    'update-agent-same' => 'O agente não foi alterado! Ticket <a href=":link " title="quot; title"><u>:name</u><a>',
 
-    'update-agent-ok' => 'O agente foi atualizado corretamente. Ticket < a href=": link " title="quot; title" > < u >: name < / u > < / a >:: old_agent - > : new_agent',
+    'update-agent-ok' => 'O agente foi atualizado corretamente. Ticket <a href=":link " title=":title"><u>:name </u></a>: :old_agent - > :new_agent',
 
-    'update-priority-same' => 'A prioridade não foi alterada! Ticket < a href=": link " title="quot; title" > < u >: name < / u > < / a >',
+    'update-priority-same' => 'A prioridade não foi alterada! Ticket <a href=":link " title=":title"><u>:name</u></a>',
 
-    'update-priority-ok' => 'A prioridade foi atualizada corretamente. Ticket < a href=": link " title="quot; title" > < u >: name < / u > < / a >:: old - > :Novo',
+    'update-priority-ok' => 'A prioridade foi atualizada corretamente. Ticket <a  href=":link" title=":title"><u>:name</u></a>: :old - > :new',
     'create-ticket-title' => 'Novo Formulário de Chamado',
     'create-new-ticket' => 'Criar Novo Chamado',
     'create-ticket-brief-issue' => 'Descreva brevemente seu Chamado',
