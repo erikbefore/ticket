@@ -12,3 +12,5 @@ yarn-error.log
 composer.lock
 storage/*
 /.idea/*
+/.idea/
+/.idea

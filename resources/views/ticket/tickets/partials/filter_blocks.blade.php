@@ -66,42 +66,41 @@
 	
 @endif
 
-<div class="title agent">{{ trans('panichd::lang.filter-agent') }}</div> 
-@if (count($filters['agent'])>$setting->grab('max_agent_buttons'))
-	
-	<div id="select_agent_container" class="select2_filter {{ session('panichd_filter_agent')=="" ? 'all' : 'single'}}">
-		<select id="select_agent" style="width: 200px; display: none;">
-		<option value="/filter/agent/remove">{{ trans('panichd::lang.filter-agent-all') }}</option>
-		@foreach ($filters['agent'] as $ag)			
-			<option value="/filter/agent/{{$ag->id}}"
-			@if ($ag->id==session('panichd_filter_agent'))
-				selected="selected"
-			@endif
-			>{{$ag->name}} ({!! $counts['agent'][$ag->id] !!})</option>
-		@endforeach
-		</select>
-	</div>
-@else	
-	<?php $agent_button_size='';?>
-	@if(count($filters['agent'])==1)
-		<button class="btn btn-light btn-sm {{ $agent_button_size }} agent-current">{{$filters['agent']{0}->name}}</button>
-	@else
-		@if (session('panichd_filter_agent')!="")
-			<a href="{{ action('\App\Http\Controllers\TicketsController@index') }}/filter/agent/remove" class="btn btn-light btn-sm agent-link {{ $agent_button_size }}">{{ trans('panichd::lang.filter-agent-all') }}</a>
-		@elseif(count($filters['agent'])>1)
-			<button class="btn btn-info btn-sm {{ $agent_button_size }} agent-current">{{ trans('panichd::lang.filter-agent-all') }}</button>
-		@endif
-	
-		@foreach ($filters['agent'] as $ag)
-			@if ($ag->id==session('panichd_filter_agent'))
-				<button class="btn btn-light btn-sm {{ $agent_button_size }} agent-current"><span>{{$ag->name}}</span> <span class="badge">{!! $counts['agent'][$ag->id] !!}</span></button>
-			@else
-				<a href="{{ action('\App\Http\Controllers\TicketsController@index') }}/filter/agent/{{$ag->id}}" class="btn btn-light btn-sm agent-link {{ $agent_button_size }}">{{$ag->name}} <span class="badge">{!! $counts['agent'][$ag->id] !!}</span></a>
-			@endif			
-		@endforeach	
-	@endif
-	
-@endif
+{{--<div class="title agent">{{ trans('panichd::lang.filter-agent') }}</div>--}}
+{{--@if (count($filters['agent'])>$setting->grab('max_agent_buttons'))--}}
+	{{--<div id="select_agent_container" class="select2_filter {{ session('panichd_filter_agent')=="" ? 'all' : 'single'}}">--}}
+		{{--<select id="select_agent" style="width: 200px; display: none;">--}}
+		{{--<option value="/filter/agent/remove">{{ trans('panichd::lang.filter-agent-all') }}</option>--}}
+		{{--@foreach ($filters['agent'] as $ag)--}}
+			{{--<option value="/filter/agent/{{$ag->id}}"--}}
+			{{--@if ($ag->id==session('panichd_filter_agent'))--}}
+				{{--selected="selected"--}}
+			{{--@endif--}}
+			{{-->{{$ag->name}} ({!! $counts['agent'][$ag->id] !!})</option>--}}
+		{{--@endforeach--}}
+		{{--</select>--}}
+	{{--</div>--}}
+{{--@else--}}
+<!--	--><?php //$agent_button_size='';?>
+	{{--@if(count($filters['agent'])==1)--}}
+		{{--<button class="btn btn-light btn-sm {{ $agent_button_size }} agent-current">{{$filters['agent']{0}->name}}</button>--}}
+	{{--@else--}}
+		{{--@if (session('panichd_filter_agent')!="")--}}
+			{{--<a href="{{ action('\App\Http\Controllers\TicketsController@index') }}/filter/agent/remove" class="btn btn-light btn-sm agent-link {{ $agent_button_size }}">{{ trans('panichd::lang.filter-agent-all') }}</a>--}}
+		{{--@elseif(count($filters['agent'])>1)--}}
+			{{--<button class="btn btn-info btn-sm {{ $agent_button_size }} agent-current">{{ trans('panichd::lang.filter-agent-all') }}</button>--}}
+		{{--@endif--}}
+
+		{{--@foreach ($filters['agent'] as $ag)--}}
+			{{--@if ($ag->id==session('panichd_filter_agent'))--}}
+				{{--<button class="btn btn-light btn-sm {{ $agent_button_size }} agent-current"><span>{{$ag->name}}</span> <span class="badge">{!! $counts['agent'][$ag->id] !!}</span></button>--}}
+			{{--@else--}}
+				{{--<a href="{{ action('\App\Http\Controllers\TicketsController@index') }}/filter/agent/{{$ag->id}}" class="btn btn-light btn-sm agent-link {{ $agent_button_size }}">{{$ag->name}} <span class="badge">{!! $counts['agent'][$ag->id] !!}</span></a>--}}
+			{{--@endif--}}
+		{{--@endforeach--}}
+	{{--@endif--}}
+
+{{--@endif--}}
 
 <script type="text/javascript">
 @section('footer_jquery')
