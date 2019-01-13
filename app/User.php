@@ -16,6 +16,7 @@ class User extends Authenticatable
 
     protected $guard_name = 'web';
     protected $table = 'users';
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
@@ -23,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'cpf', 'id_system_origin','active',
     ];
 
     /**

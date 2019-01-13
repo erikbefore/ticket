@@ -18,6 +18,7 @@ $admin_route_path = Setting::grab('admin_route_path');
 //use Illuminate\Support\Facades\Route;
 
 Route::get("modulo/search", 'ModuloController@search')->name("modulo.search");
+Route::get("user/search", 'UserSearchController@search')->name("user.search");
 
 
 

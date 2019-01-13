@@ -17,6 +17,16 @@
         'enctype' => 'multipart/form-data'
     ]) !!}
 
+
+        {{--@if ($u->canTicketChangeModule())--}}
+            {{--<div class="form-group col-md-4">--}}
+                {{--<label> *Módulo:</label>--}}
+                {{--<input name="owner_id_aux" id="owner_id_aux" class="form-control input-lg completedrop" value="" placeholder="Digite o Cliente" autocomplete="off">--}}
+                {{--<input type="hidden" name="owner_id" id="owner_id" value="">--}}
+            {{--</div>--}}
+        {{--@endif--}}
+
+
         <div class="card-body">
             <div class="form-row">
 
@@ -65,7 +75,7 @@
                 @if ($u->canTicketChangeUf())
                     <div class="form-group col-md-2">
                         <label> *UF:</label>
-                        <select name="uf" class="form-control">
+                        <select name="uf" class="form-control generate_default_select2">
                             <option value="">Escolha a UF</option>
                             @foreach ($ufs as $keyUfId => $uf)
                                 <option value="{{$keyUfId}}" {{ isset($ticket) && $ticket->id_uf == $keyUfId ? 'selected="selected"' : '' }} >{{ $uf}} </option>
@@ -76,24 +86,33 @@
 
             <!-- OWNER -->
                 @if ($u->canTicketChangeOwner())
-                    <div class="form-group col-md-4">
-                        <label for="owner_id" title="{{ trans('panichd::lang.create-ticket-owner-help') }}">
-                            *{{trans('panichd::lang.owner')}}{{trans('panichd::lang.colon')}} <span
-                                    class="fa fa-question-circle" style="color: #bbb"></span></label>
-                        <select name="owner_id" class="form-control">
-                            @foreach ($a_owners as $owner)
-                                <option value="{{ $owner->id }}" {{ $owner->id == $a_current['owner_id'] ? 'selected="selected"' : '' }}>{{ $owner->name . ($owner->email == "" ? ' ' . trans('panichd::lang.ticket-owner-no-email') : ' - ' . $owner->email) }}
-                                    @if ($setting->grab('departments_notices_feature'))
-                                        @if ($owner->ticketit_department == '0')
-                                            {{ ' - ' . trans('panichd::lang.create-ticket-notices') . ' ' . trans('panichd::lang.all-depts')}}
-                                        @elseif ($owner->ticketit_department != "")
-                                            {{ ' - ' . trans('panichd::lang.create-ticket-notices') . ' ' . $owner->userDepartment->getFullName() }}
-                                        @endif
-                                    @endif
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
+                    {{--<div class="form-group col-md-4">--}}
+                        {{--<label for="owner_id" title="{{ trans('panichd::lang.create-ticket-owner-help') }}">--}}
+                            {{--*{{trans('panichd::lang.owner')}}{{trans('panichd::lang.colon')}} <span--}}
+                                    {{--class="fa fa-question-circle" style="color: #bbb"></span></label>--}}
+                        {{--<select name="owner_id" class="form-control generate_default_select2">--}}
+                            {{--@foreach ($a_owners as $owner)--}}
+                                {{--<option value="{{ $owner->id }}" {{ $owner->id == $a_current['owner_id'] ? 'selected="selected"' : '' }}>{{ $owner->name . ($owner->email == "" ? ' ' . trans('panichd::lang.ticket-owner-no-email') : ' - ' . $owner->email) }}--}}
+                                    {{--@if ($setting->grab('departments_notices_feature'))--}}
+                                        {{--@if ($owner->ticketit_department == '0')--}}
+                                            {{--{{ ' - ' . trans('panichd::lang.create-ticket-notices') . ' ' . trans('panichd::lang.all-depts')}}--}}
+                                        {{--@elseif ($owner->ticketit_department != "")--}}
+                                            {{--{{ ' - ' . trans('panichd::lang.create-ticket-notices') . ' ' . $owner->userDepartment->getFullName() }}--}}
+                                        {{--@endif--}}
+                                    {{--@endif--}}
+                                {{--</option>--}}
+                            {{--@endforeach--}}
+                        {{--</select>--}}
+                    {{--</div>--}}
+                        <div class="form-group col-md-4">
+                            <label for="owner_id" class=" tooltip-info"
+                                   title="{{ trans('panichd::lang.create-ticket-owner-help') }}">
+                                *{{trans('panichd::lang.owner')}}{{trans('panichd::lang.colon')}} <span
+                                        class="fa fa-question-circle" style="color: #bbb"></span></label>
+                            <input name="owner_id_aux" id="owner_id_aux" value="{{$a_current['owner_name'] }}" class="form-control input-lg completedrop" value="" placeholder="Digite o Proprietário do Ticket" autocomplete="off">
+                            <input type="hidden" name="owner_id" id="owner_id" value="{{$a_current['owner_id'] }}">
+                            <div class="jquery_error_text"></div>
+                        </div>
                 @endif
 
 
@@ -103,7 +122,7 @@
                 <!-- STATUS -->
                     <div class="form-group col-md-2">
                         {!! CollectiveForm::label('status_id', trans('panichd::lang.status') . trans('panichd::lang.colon')) !!}
-                        {!! CollectiveForm::select('status_id', $status_lists, $a_current['status_id'], ['id' => 'select_status', 'class' => 'form-control']) !!}
+                        {!! CollectiveForm::select('status_id', $status_lists, $a_current['status_id'], ['id' => 'select_status', 'class' => 'form-control generate_default_select2']) !!}
 
                     </div>
 
@@ -168,7 +187,7 @@
                 @if ($u->canTicketChangeType())
                     <div class="form-group col-md-2">
                         <label> *Tipo Suporte:</label>
-                        <select name="type" class="form-control">
+                        <select name="type" class="form-control generate_default_select2">
                             <option value="">Escolha</option>
                             @foreach ($types as $type)
                                 <option value="{{$type->id}}" {{ isset($ticket) && $ticket->type_id == $type->id ? 'selected="selected"' : '' }} >{{ $type->descricao}} </option>
@@ -190,7 +209,10 @@
                     @if ($tag_lists->count() > 0)
                         <div class="form-group col-md-8">
                             <label>{{ trans('panichd::lang.tags') . trans('panichd::lang.colon') }}</label>
-                            @include('panichd::tickets.partials.tags_menu')
+
+                            <div id="jquery_select2_container" class="">
+                                @include('panichd::tickets.partials.tags_menu')
+                            </div>
                         </div>
                     @endif
                 @else
@@ -228,11 +250,10 @@
                         @include('panichd::shared.attach_files_script')
                         <div id="ticket_attached" class="panel-group grouped_check_list deletion_list attached_list"
                              data-new-attachment-modal-id="modal-attachment-edit">
-                            @if (isset($ticket))
                                 @foreach($ticket->attachments as $attachment)
                                     @include('panichd::tickets.partials.attachment', ['template'=>'createedit'])
                                 @endforeach
-                            @endif
+
                         </div>
                         @endif
                     </div>
@@ -391,57 +412,8 @@
             });
         });
 
-        function dropAutoComplete(idCampo, route) {
-
-            var idCampoAux = idCampo + '_aux';
-
-            widgetInst = $('#' + idCampoAux).autocomplete({
-                minLength: 3,
-                delay: 1000,
-                html:true,
-                source: function( request, response ) {
-                    $.ajax({
-                        url: route,
-                        dataType: "json",
-                        data: {
-                            term : request.term
-                        },
-                        success: function(data) {
-                            var array = $.map(data, function (item) {
-                                return {
-                                    value: item.id,
-                                    label: item.label,
-                                    data : item
-                                }
-                            });
-                            response(array)
-                        }
-                    });
-                },
-                select: function (event, ui) {
-
-                    var data = ui.item.data;
-
-                    if(data){
-                        $("#" + idCampoAux).val(data.label);
-                        $("#" + idCampo).val(data.id);
-                    }
-
-                    event.preventDefault();
-                }
-            }).data('ui-autocomplete');
-
-
-            widgetInst._renderItem  = function (ul, item) {
-
-                return $("<li></li>")
-                    .data("item.autocomplete", item)
-                    .append("<a>" + item.label + "</a>")
-                    .appendTo(ul);
-            };
-        }
-
         dropAutoComplete('modulo', "{{ route('modulo.search') }}");
+        dropAutoComplete('owner_id', "{{ route('user.search') }}");
 
     </script>
     @include('panichd::tickets.partials.tags_footer_script')

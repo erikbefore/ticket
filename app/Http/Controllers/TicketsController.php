@@ -11,6 +11,7 @@ use App\Model\Syscor\Modulo;
 use App\Model\TicketOrigin;
 use App\Model\TicketType;
 use App\Model\UF;
+use App\Services\UserService;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -35,10 +36,12 @@ class TicketsController extends Controller
 {
     use Attachments, CacheVars, Purifiable, TicketFilters;
 
+    private $userService;
+
     protected $tickets;
     protected $member;
 
-    public function __construct(Ticket $tickets, \PanicHDMember $member)
+    public function __construct(Ticket $tickets, \PanicHDMember $member, UserService $userService)
     {
         $this->middleware('App\Http\Middleware\EnvironmentReadyMiddleware', ['only' => ['create']]);
 		$this->middleware('App\Http\Middleware\UserAccessMiddleware', ['only' => ['show', 'downloadAttachment', 'viewAttachment']]);
@@ -47,6 +50,8 @@ class TicketsController extends Controller
 
         $this->tickets = $tickets;
         $this->member = $member;
+
+        $this->userService = $userService;
     }
 
 	// This is loaded via AJAX at file Views\index.blade.php
@@ -741,6 +746,7 @@ class TicketsController extends Controller
 		}elseif($ticket){
 			// Edition values
             $a_current['owner_id'] = $ticket->user_id;
+            $a_current['owner_name'] = $ticket->owner()->first()->name;
 
             $a_current['complete'] = $ticket->isComplete() ? "yes" : "no";
 			$a_current['status_id'] = $ticket->status_id;
@@ -755,10 +761,12 @@ class TicketsController extends Controller
 		}else{
 			// Defaults
             $a_current['owner_id'] = auth()->user()->id;
+            $a_current['owner_name'] = auth()->user()->name;
 
             $a_current['complete'] = "no";
 
-			$a_current['start_date'] = $a_current['limit_date'] = "";
+			$a_current['start_date'] = date('d-m-Y H:i:s');
+            $a_current['limit_date'] = "";
 
 			$a_current['priority_id'] = Setting::grab('default_priority_id');
 
@@ -900,11 +908,6 @@ class TicketsController extends Controller
             ]);
         }
 
-		if($member->canTicketChangeOwner()){
-            $fields = array_merge($fields, [
-                'owner_id'    => 'required|exists:' . $this->member->getTable() . ',id',
-            ]);
-        }
 
 		$a_result_errors = [];
 
@@ -1027,6 +1030,17 @@ class TicketsController extends Controller
             ]);
         }
 
+        if($member->canTicketChangeOwner()){
+            $fields = array_merge($fields, [
+                'owner_id'    => 'required',
+              //  'owner_id'    => 'exists:' . $this->member->getTable() . ',id',
+            ]);
+
+            $custom_messages = array_merge($custom_messages,[
+                'owner_id.required' => 'Campo proprietário é obrigatório'
+            ]);
+        }
+
         // Form validation
         $validator = Validator::make($request->all(), $fields, $custom_messages);
 
@@ -1087,9 +1101,16 @@ class TicketsController extends Controller
     {
         $member = auth()->user();
 
-
 		$common_data = $this->validation_common($request);
 		extract($common_data);
+
+        // If errors present
+        if ($a_result_errors){
+            return response()->json(array_merge(
+                ['result' => 'error'],
+                $a_result_errors
+            ));
+        }
 
 		DB::beginTransaction();
         $ticket = new Ticket();
@@ -1105,13 +1126,19 @@ class TicketsController extends Controller
             $ticket->mod_id = $request->modulo;
         }
 
-		$owner_id = $request->owner_id;
+        $owner_id = $request->owner_id;
 
 		if(!$member->canTicketChangeOwner()){
             $owner_id = $ticket->creator_id;
         }
 
-		$ticket->user_id = $owner_id;
+        $ticket->user_id = $owner_id;
+
+        if($ticket->user_id){
+            $newUserBticket = $this->userService->updateOrInsert($ticket->user_id);
+
+            $ticket->user_id = $newUserBticket->id;
+        }
 
         $origin_id = $request->origin;
 
@@ -1342,6 +1369,16 @@ class TicketsController extends Controller
 
         if($member->canTicketChangeOwner()){
             $ticket->user_id = $request->owner_id;
+
+            if($ticket->user_id){
+                $userExiting = $this->userService->findById($ticket->user_id);
+
+                if(!$userExiting){
+                    $newUserBticket = $this->userService->updateOrInsert($ticket->user_id);
+
+                    $ticket->user_id = $newUserBticket->id;
+                }
+            }
         }
 
 		$ticket->hidden = $request->hidden;

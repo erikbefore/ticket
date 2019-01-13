@@ -11,6 +11,8 @@
     <title>{{ config('app.name', 'Bticket') }}</title>
 
     <!-- Scripts -->
+    <script src="{{ asset('js/functions.js') }}" ></script>
+
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -25,7 +27,7 @@
             <div class="navbar-header">
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Bticket') }}
                 </a>
             </div>
 
