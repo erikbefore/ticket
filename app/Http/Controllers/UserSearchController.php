@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 
 use App\Helpers\ArrayIsoToUtf8;
+use App\Model\UF;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UserSearchController
 {
@@ -21,7 +23,17 @@ class UserSearchController
 
         try {
 
+            if(! $request->uf_id){
+                return;
+            }
+
+            $UF =  UF::find($request->uf_id);
+
+            setConnection($UF);
+
             $users = $this->userService->findUserByName($request);
+
+            resetConnection();
 
             return response()->json(ArrayIsoToUtf8::converter($users));
 

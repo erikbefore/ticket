@@ -321,7 +321,7 @@ $rotaAdminDashboard= [
 
 // $admin_route_path/dashboard
     'index-title'                         => 'Tickets System Dashboard',
-    'index-empty-records'                 => 'No tickets yet',
+    'index-empty-records'                 => 'Não há tickets',
     'index-total-tickets'                 => 'Total tickets',
     'index-newest-tickets'                => ' Tickets Novos',
     'index-active-tickets'                => ' Tickets ativos',

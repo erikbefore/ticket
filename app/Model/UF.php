@@ -3,11 +3,12 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class UF extends Model
 {
-    protected $table;
-    protected $primaryKey = "uf_id";
+    protected $table = 'uf';
+    protected $primaryKey = "id";
     public $timestamps = false;
 
     const SIGLAS = [
@@ -71,5 +72,11 @@ class UF extends Model
         'TO' => 27
     ];
 
-}
+    public function findWithCache($uf_id, $minutes = 1440)
+    {
 
+        return Cache::remember($this->getTable() . ':uf_id', $minutes, function ($uf_id) {
+            return $this->find($uf_id);
+        });
+    }
+}

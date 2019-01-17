@@ -1,6 +1,6 @@
 @section('panichd_errors')
-	<div class="container-fluid">
-	<div class="alert alert-danger" id="form_errors" style="{{ $errors->first() == '' ? 'display: none;' : '' }}">
+	<div class="">
+	<div class="alert alert-danger container-fluid-create" id="form_errors" style="{{ $errors->first() == '' ? 'display: none;' : '' }}">
 		<button type="button" class="close" data-dismiss="alert">{{ trans('panichd::lang.flash-x') }}</button>
 		<div style="font-weight: bold">{{ trans('panichd::lang.validation-error') . trans('panichd::lang.colon') }}</div>
 		<ul>

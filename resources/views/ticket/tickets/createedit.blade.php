@@ -1,3 +1,12 @@
+<?php
+
+    $sizeColumnSubject = 'form-group col-md-9';
+
+    if($u->currentLevel() == 1){
+        $sizeColumnSubject = 'form-group col-md-12';
+    }
+?>
+
 @extends($master)
 @section('page', trans('panichd::lang.create-ticket-title'))
 
@@ -5,7 +14,7 @@
 
 @section('content')
 
-    <div class="card bg-light">
+    <div class="card bg-light container-fluid-create">
         <div class="card-header">
             <legend>{!! trans('panichd::lang.create-new-ticket') !!}</legend>
         </div>
@@ -43,12 +52,6 @@
                     </div>
                 @endif
 
-                <div class="form-group col-md-7"><!-- SUBJECT -->
-                    {!! CollectiveForm::label('subject', '*' . trans('panichd::lang.subject') . trans('panichd::lang.colon')) !!}
-                    {!! CollectiveForm::text('subject', isset($ticket) ? $ticket->subject : null , ['class' => 'form-control', 'required' => 'required', 'autocomplete' => "off", 'placeholder' => trans('panichd::lang.create-ticket-brief-issue')]) !!}
-                    <div class="jquery_error_text"></div>
-                </div>
-
                 <!-- UF -->
                 @if ($u->canTicketChangeUf())
                     <div class="form-group col-md-2">
@@ -56,13 +59,20 @@
                         <select name="uf" class="generate_default_select2 form-control">
                             <option value="">Escolha a UF</option>
                             @foreach ($ufs as $keyUfId => $uf)
-                                <option value="{{$keyUfId}}" {{ isset($ticket) && $ticket->id_uf == $keyUfId ? 'selected="selected"' : '' }} >{{ $uf}} </option>
+                                <option value="{{$keyUfId}}" {{ isset($ticket) && $ticket->uf_id == $keyUfId ? 'selected="selected"' : '' }} >{{ $uf}} </option>
                             @endforeach
                         </select>
                         <div class="jquery_error_text"></div>
 
                     </div>
                 @endif
+
+
+                    <div class="{{$sizeColumnSubject}}"><!-- SUBJECT -->
+                    {!! CollectiveForm::label('subject', '*' . trans('panichd::lang.subject') . trans('panichd::lang.colon')) !!}
+                    {!! CollectiveForm::text('subject', isset($ticket) ? $ticket->subject : null , ['class' => 'form-control', 'required' => 'required', 'autocomplete' => "off", 'placeholder' => trans('panichd::lang.create-ticket-brief-issue')]) !!}
+                    <div class="jquery_error_text"></div>
+                </div>
 
             <!-- Modulos -->
                 @if ($u->canTicketChangeModule())
@@ -90,9 +100,10 @@
                     </div>
                 @endif
 
+                <!-- ORIGIN -->
+
+
                 @if ($u->currentLevel() > 1)
-
-
 
                     <div class="form-group col-md-2"><!-- STATUS -->
                         {!! CollectiveForm::label('status_id', trans('panichd::lang.status') . trans('panichd::lang.colon')) !!}
@@ -104,8 +115,21 @@
                         {!! CollectiveForm::select('priority_id', $priorities, $a_current['priority_id'], ['class' => 'form-control', 'required' => 'required']) !!}
                     </div>
 
+                        @if ($u->canTicketChangeOrigin())
+                            <div class="form-group col-md-2">
+                                <label> *Origem:</label>
+                                <select name="origin" class="generate_default_select2 form-control">
+                                    <option value="">Escolha a origem</option>
+                                    @foreach ($origins as $origin)
+                                        <option value="{{$origin->id}}" {{ isset($ticket) && $ticket->origin_id == $origin->id ? 'selected="selected"' : '' }} >{{ $origin->descricao}} </option>
+                                    @endforeach
+                                </select>
+                                <div class="jquery_error_text"></div>
+                            </div>
+                        @endif
+
                     <div class="form-group col-md-4">
-                        {!! CollectiveForm::label('start_date', trans('panichd::lang.start-date') . trans('panichd::lang.colon'), ['class' => 'col-lg-3 ']) !!}
+                        {!! CollectiveForm::label('start_date', trans('panichd::lang.start-date') . trans('panichd::lang.colon')) !!}
 
                         <div class="input-group date" id="start_date">
                             <input type="text" class="form-control" name="start_date"
@@ -118,7 +142,7 @@
                         <div class="jquery_error_text"></div>
                     </div>
                     <div class="form-group col-md-4">
-                        {!! CollectiveForm::label('limit_date', trans('panichd::lang.limit-date') . trans('panichd::lang.colon'), ['class' => 'col-lg-3 ']) !!}
+                        {!! CollectiveForm::label('limit_date', trans('panichd::lang.limit-date') . trans('panichd::lang.colon')) !!}
 
                         <div class="input-group date" id="limit_date">
                             <input type="text" class="form-control" name="limit_date"
@@ -141,19 +165,7 @@
                     </div>
                 @endif
 
-            <!-- ORIGIN -->
-                @if ($u->canTicketChangeOrigin())
-                    <div class="form-group col-md-2">
-                        <label> *Origem:</label>
-                        <select name="origin" class="generate_default_select2 form-control">
-                            <option value="">Escolha a origem</option>
-                            @foreach ($origins as $origin)
-                                <option value="{{$origin->id}}" {{ isset($ticket) && $ticket->origin_id == $origin->id ? 'selected="selected"' : '' }} >{{ $origin->descricao}} </option>
-                            @endforeach
-                        </select>
-                        <div class="jquery_error_text"></div>
-                    </div>
-                @endif
+
 
             <!-- TYPE -->
                 @if ($u->canTicketChangeType())
@@ -198,7 +210,7 @@
                            title="{{ trans('panichd::lang.create-ticket-describe-issue') }}">
                         *{{trans('panichd::lang.description')}}{{trans('panichd::lang.colon')}} <span
                                 class="fa fa-question-circle" style="color: #bbb"></span></label>
-                    <div class="col-lg-10 summernote-text-wrapper">
+                    <div class="summernote-text-wrapper">
                                 <textarea class="form-control summernote-editor" style="display: none" rows="5"
                                           name="content" cols="50">{!! $a_current['description'] !!}</textarea>
                         <div class="jquery_error_text"></div>
@@ -211,7 +223,7 @@
                         <label for="intervention" class="tooltip-info"
                                title="{{ trans('panichd::lang.create-ticket-intervention-help') }}">{{ trans('panichd::lang.intervention') . trans('panichd::lang.colon') }}
                             <span class="fa fa-question-circle" style="color: #bbb"></span></label>
-                        <div class="col-lg-10 summernote-text-wrapper">
+                        <div class="summernote-text-wrapper">
                                         <textarea class="form-control summernote-editor" style="display: none" rows="5"
                                                   name="intervention"
                                                   cols="50"></textarea>
@@ -370,8 +382,10 @@
                         });
                     });
 
-                    dropAutoComplete('modulo', "{{ route('modulo.search') }}");
-                    dropAutoComplete('owner_id', "{{ route('user.search') }}");
+                    var objUf = $("select[name=uf]");
+
+                    dropAutoCompleteWithUf('modulo', "{{ route('modulo.search') }}", objUf);
+                    dropAutoCompleteWithUf('owner_id', "{{ route('user.search') }}", objUf);
 
                 </script>
     @include('panichd::tickets.partials.tags_footer_script')

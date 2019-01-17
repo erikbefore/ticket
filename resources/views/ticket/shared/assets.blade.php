@@ -2,6 +2,7 @@
 <link rel="StyleSheet" href="{{asset('vendor/panichd/font-awesome/css/all-5.2.0.min.css')}}">
 <link rel="StyleSheet" href="{{asset('vendor/panichd/css/select2.min.css')}}">
 <link rel="StyleSheet" href="{{asset('vendor/panichd/css/jqueryui/1.12.1/jquery-ui.min.css')}}">
+
 <style type="text/css">
 .select2-selection__choice {
 	background-color: #cfe2f3 !important;
@@ -15,6 +16,7 @@
 </style>
 
 <link href="{{ asset('/vendor/panichd/css/panichd.css') }}?v=20180828" rel="stylesheet">
+<link rel="StyleSheet" href="{{asset('css/system.css')}}">
 
 <script type="text/javascript" src="{{asset('vendor/panichd/js/jQuery/jquery-3.3.1.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('vendor/panichd/js/jQuery/jquery-ui-1.12.1.min.js')}}"></script>

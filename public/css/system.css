@@ -1,0 +1,18 @@
+
+label {
+    margin-bottom: .1rem;
+}
+
+#panichd_content .select2-selection {
+    height: 38px !important;
+}
+
+.container-fluid-create {
+    width: 81%;
+    margin: 1% auto;
+}
+
+.card-header {
+    padding: .20rem 1rem;
+}
+

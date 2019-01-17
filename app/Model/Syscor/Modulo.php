@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Modulo extends Model
 {
-
-    protected $connection = 'syscor';
     protected $table = 'modulo';
-
+    protected $primaryKey = 'mod_id';
+    protected $connection = 'syscor_default';
 }

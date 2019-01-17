@@ -174,11 +174,12 @@ class Member extends User
 	public static function currentLevel()
 	{
 		if (!auth()->check()) return 0;
-		$member = \PanicHDMember::find(auth()->user()->id);
 
-		if ($member->isAdmin()){
+		$member = auth()->user();// \PanicHDMember::find(auth()->user()->id);
+
+		if ($member->panichd_admin){
 			return 3;
-		}elseif($member->isAgent()){
+		}elseif($member->panichd_agent){
 			if (session()->exists('panichd_filter_currentLevel') and session('panichd_filter_currentLevel')==1){
 				return 1;
 			}else{

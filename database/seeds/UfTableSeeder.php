@@ -210,7 +210,6 @@ class UfTableSeeder extends Seeder
 
             ]);
 
-
         }   else {
             echo "\e[31mTabela uf não esta vazia ";
         }

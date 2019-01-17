@@ -11,6 +11,7 @@ use App\Model\Syscor\Modulo;
 use App\Model\TicketOrigin;
 use App\Model\TicketType;
 use App\Model\UF;
+use App\Services\ModuleService;
 use App\Services\UserService;
 use Cache;
 use Carbon\Carbon;
@@ -37,11 +38,12 @@ class TicketsController extends Controller
     use Attachments, CacheVars, Purifiable, TicketFilters;
 
     private $userService;
+    private $moduleService;
 
     protected $tickets;
     protected $member;
 
-    public function __construct(Ticket $tickets, \PanicHDMember $member, UserService $userService)
+    public function __construct(Ticket $tickets, \PanicHDMember $member, UserService $userService, ModuleService $moduleService)
     {
         $this->middleware('App\Http\Middleware\EnvironmentReadyMiddleware', ['only' => ['create']]);
 		$this->middleware('App\Http\Middleware\UserAccessMiddleware', ['only' => ['show', 'downloadAttachment', 'viewAttachment']]);
@@ -52,6 +54,7 @@ class TicketsController extends Controller
         $this->member = $member;
 
         $this->userService = $userService;
+        $this->moduleService = $moduleService;
     }
 
 	// This is loaded via AJAX at file Views\index.blade.php
@@ -238,7 +241,8 @@ class TicketsController extends Controller
                 }else{
                     $field = $ticket->content;
                 }
-				//if ($ticket->all_attachments_count>0) $field.= "<br />" . $ticket->all_attachments_count . ' <span class="fa fa-paperclip tooltip-info attachment" title="'.trans('panichd::lang.table-info-attachments-total', ['num' => $ticket->all_attachments_count]).'"></span>';
+				//if ($ticket->all_attachments_count>0) $field.= "<br />" . $ticket->all_attachments_count . ' <span class="fa fa-paperclip tooltip-info attachment" title="'.trans('panichd::lang.table-info-
+                //-total', ['num' => $ticket->all_attachments_count]).'"></span>';
 
 				return $field;
 			});
@@ -836,20 +840,22 @@ class TicketsController extends Controller
         $mod_name = '';
 
         if($ticket && $ticket->mod_id){
-            $mod_name = Modulo::select(
-                [
-                    "mod_id",
-                    "mod_nome",
-                    "sub_nome",
-                    "me_nome"
-                ])
-                ->where('mod_id', '=', $ticket->mod_id)
-                ->join('menu_sub AS sub', 'sub.sub_id', '=', 'modulo.sub_id')
-                ->join('menu AS me', 'me.me_id', '=', 'sub.me_id')
-                ->orderBy(\DB::raw(" me.me_ordem ASC, me.me_nome ASC, sub.sub_nome ASC, mod_nome "))
-                ->first();
+//            $mod_name = Modulo::select(
+//                [
+//                    "mod_id",
+//                    "mod_nome",
+//                    "sub_nome",
+//                    "me_nome"
+//                ])
+//                ->where('mod_id', '=', $ticket->mod_id)
+//                ->join('menu_sub AS sub', 'sub.sub_id', '=', 'modulo.sub_id')
+//                ->join('menu AS me', 'me.me_id', '=', 'sub.me_id')
+//                ->orderBy(\DB::raw(" me.me_ordem ASC, me.me_nome ASC, sub.sub_nome ASC, mod_nome "))
+//                ->first();
+//
+//            $mod_name = utf8_encode("{$mod_name->me_nome} > $mod_name->sub_nome > $mod_name->mod_nome");
 
-            $mod_name = utf8_encode("{$mod_name->me_nome} > $mod_name->sub_nome > $mod_name->mod_nome");
+            $mod_name = 'necessário implementar essa funcionalidade';
         }
 
 		return compact(
@@ -1119,10 +1125,14 @@ class TicketsController extends Controller
 		$ticket->creator_id = auth()->user()->id;
 
         if($member->canTicketChangeUf()){
-            $ticket->id_uf = $request->uf;
+            $ticket->uf_id = $request->uf;
         }
 
         if($member->canTicketChangeModule()){
+            $ticket->mod_id = $request->modulo;
+
+            $UserBticket = $this->moduleService->updateOrCreate($ticket->mod_id);
+
             $ticket->mod_id = $request->modulo;
         }
 
@@ -1134,10 +1144,10 @@ class TicketsController extends Controller
 
         $ticket->user_id = $owner_id;
 
-        if($ticket->user_id){
-            $newUserBticket = $this->userService->updateOrInsert($ticket->user_id);
+        if($ticket->user_id && ($member->isAdmin() || $member->isAgent() )  ){
+            $UserBticket = $this->userService->updateOrInsert($ticket->user_id);
 
-            $ticket->user_id = $newUserBticket->id;
+            $ticket->user_id = $UserBticket->id;
         }
 
         $origin_id = $request->origin;
@@ -1235,7 +1245,7 @@ class TicketsController extends Controller
 
         return response()->json([
 			'result' => 'ok',
-			'url' => action('\App\Http\Controllers\TicketsController@index')
+			'url' => action('\App\Http\Controllers\TicketsController@indexNewest')
 		]);
     }
 
@@ -1374,7 +1384,7 @@ class TicketsController extends Controller
                 $userExiting = $this->userService->findById($ticket->user_id);
 
                 if(!$userExiting){
-                    $newUserBticket = $this->userService->updateOrInsert($ticket->user_id);
+                    $newUserBticket = $this->userService->updateOrInsert($ticket->user_id, $request->uf);
 
                     $ticket->user_id = $newUserBticket->id;
                 }
@@ -1384,7 +1394,7 @@ class TicketsController extends Controller
 		$ticket->hidden = $request->hidden;
 
         if($member->canTicketChangeUf()){
-            $ticket->id_uf = $request->uf;
+            $ticket->uf_id = $request->uf;
         }
 
         if($member->canTicketChangeType()){
@@ -1908,36 +1918,6 @@ class TicketsController extends Controller
         return 'no';
     }
 
-    /**
-     * Calculate average closing period of days per category for number of months.
-     *
-     * @param int $period
-     *
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
-    public function monthlyPerfomance($period = 2)
-    {
-        $categories = Category::all();
-        foreach ($categories as $cat) {
-            $records['categories'][] = $cat->name;
-        }
-
-        for ($m = $period; $m >= 0; $m--) {
-            $from = Carbon::now();
-            $from->day = 1;
-            $from->subMonth($m);
-            $to = Carbon::now();
-            $to->day = 1;
-            $to->subMonth($m);
-            $to->endOfMonth();
-            $records['interval'][$from->format('F Y')] = [];
-            foreach ($categories as $cat) {
-                $records['interval'][$from->format('F Y')][] = round($this->intervalPerformance($from, $to, $cat->id), 1);
-            }
-        }
-
-        return $records;
-    }
 
     /**
      * Calculate the date length it took to solve a ticket.
@@ -1958,37 +1938,5 @@ class TicketsController extends Controller
 
         return $length;
     }
-
-    /**
-     * Calculate the average date length it took to solve tickets within date period.
-     *
-     * @param $from
-     * @param $to
-     *
-     * @return int
-     */
-    public function intervalPerformance($from, $to, $cat_id = false)
-    {
-        if ($cat_id) {
-            $tickets = Ticket::where('category_id', $cat_id)->whereBetween('completed_at', [$from, $to])->get();
-        } else {
-            $tickets = Ticket::whereBetween('completed_at', [$from, $to])->get();
-        }
-
-        if (empty($tickets->first())) {
-            return false;
-        }
-
-        $performance_count = 0;
-        $counter = 0;
-        foreach ($tickets as $ticket) {
-            $performance_count += $this->ticketPerformance($ticket);
-            $counter++;
-        }
-        $performance_average = $performance_count / $counter;
-
-        return $performance_average;
-    }
-
 
 }

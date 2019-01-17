@@ -19,10 +19,13 @@ class DatabaseSeeder extends Seeder
             BasicPriorities::class,
             BasicStatuses::class,
             CategoriesTableSeeders::class,
-             ClosingReasonsSeeder::class,
+            ClosingReasonsSeeder::class,
             RegionalTableSeeder::class,
             UfTableSeeder::class,
-            PermissionsSeeder::class
+            PermissionsSeeder::class,
+            TicketOriginSeeder::class,
+            TicketTypeSeeder::class,
+            ChannelSeeder::class
          ]);
     }
 }

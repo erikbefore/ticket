@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterTicket extends Migration
+class CreateTableChannel extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AlterTicket extends Migration
      */
     public function up()
     {
-        Schema::table('panichd_tickets', function (Blueprint $table) {
-            $table->unsignedInteger('mod_id')->nullable();
+        Schema::create('channel', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 50);
+            $table->timestamps();
         });
     }
 
@@ -25,6 +27,6 @@ class AlterTicket extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('channel');
     }
 }

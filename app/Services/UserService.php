@@ -8,6 +8,7 @@ use App\Model\Syscor\User as UserSyscor;
 use App\Repositories\UserRepository;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UserService
 {
@@ -25,7 +26,7 @@ class UserService
       }
 
 
-    public function updateOrInsert(int $id){
+    public function updateOrInsert(int $id, $uf_id){
 
         //identifica se o usuario existe no bticket
         $userBticket = $this->userRepository->findByIdSystemOrigin($id);
@@ -53,11 +54,15 @@ class UserService
 
     public function findUserByName(Request $request){
 
-        $name = $request->term;
+        $name = utf8_decode($request->term);
         $return = [];
 
         if(!$name){
             return $return;
+        }
+
+        if(Session::get('database')){
+            $this->userRepositorySyscor->getModel()->setConnection(Session::get('database'));
         }
 
         $users = $this->userRepositorySyscor->findUserByName($name);
@@ -67,5 +72,10 @@ class UserService
         }
 
         return $return;
+    }
+
+
+    public function create(){
+
     }
 }

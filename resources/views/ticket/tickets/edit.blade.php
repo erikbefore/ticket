@@ -1,3 +1,4 @@
+
 @extends($master)
 @section('page', trans('panichd::lang.create-ticket-title'))
 
@@ -5,7 +6,7 @@
 
 @section('content')
 
-    <div class="card bg-light">
+    <div class="card bg-light container-fluid-create">
         <div class="card-header">
             <legend>{!! trans('panichd::lang.edit-ticket') . ' #'.$ticket->id !!}</legend>
         </div>
@@ -17,7 +18,6 @@
         'enctype' => 'multipart/form-data'
     ]) !!}
 
-
         {{--@if ($u->canTicketChangeModule())--}}
             {{--<div class="form-group col-md-4">--}}
                 {{--<label> *Módulo:</label>--}}
@@ -26,10 +26,8 @@
             {{--</div>--}}
         {{--@endif--}}
 
-
         <div class="card-body">
             <div class="form-row">
-
                 @if ($u->currentLevel() > 1)
 
                     <div class="form-group col-md-1">
@@ -53,10 +51,21 @@
                     </div>
                 @endif
 
+                <!-- UF -->
+                    @if ($u->canTicketChangeUf())
+                        <div class="form-group col-md-2">
+                            <label> *UF:</label>
+                            <select name="uf" id="uf_change" class="form-control generate_default_select2">
+                                <option value="">Escolha a UF</option>
+                                @foreach ($ufs as $keyUfId => $uf)
+                                    <option value="{{$keyUfId}}" {{ isset($ticket) && $ticket->uf_id == $keyUfId ? 'selected="selected"' : '' }} >{{ $uf}} </option>
+                                @endforeach
+                            </select></div>
+                    @endif
 
 
             <!-- SUBJECT -->
-                <div class="form-group  col-md-7">
+                <div class="form-group  col-md-9">
                     {!! CollectiveForm::label('subject', '*' . trans('panichd::lang.subject') . trans('panichd::lang.colon')) !!}
                     {!! CollectiveForm::text('subject',  $ticket->subject , ['class' => 'form-control', 'required' => 'required', 'placeholder' => trans('panichd::lang.create-ticket-brief-issue')]) !!}
                 </div>
@@ -71,18 +80,7 @@
             @endif
 
 
-                <!-- UF -->
-                @if ($u->canTicketChangeUf())
-                    <div class="form-group col-md-2">
-                        <label> *UF:</label>
-                        <select name="uf" class="form-control generate_default_select2">
-                            <option value="">Escolha a UF</option>
-                            @foreach ($ufs as $keyUfId => $uf)
-                                <option value="{{$keyUfId}}" {{ isset($ticket) && $ticket->id_uf == $keyUfId ? 'selected="selected"' : '' }} >{{ $uf}} </option>
-                            @endforeach
-                        </select>
-                    </div>
-                @endif
+
 
             <!-- OWNER -->
                 @if ($u->canTicketChangeOwner())
@@ -412,8 +410,17 @@
             });
         });
 
-        dropAutoComplete('modulo', "{{ route('modulo.search') }}");
-        dropAutoComplete('owner_id', "{{ route('user.search') }}");
+        var objUf = $("select[name=uf]");
+
+        dropAutoCompleteWithUf('modulo', "{{ route('modulo.search') }}", objUf);
+        dropAutoCompleteWithUf('owner_id', "{{ route('user.search') }}", objUf);
+
+        // $('#uf_change').change(function () {
+        //     var $elementUfChange = $(this);
+        //
+        //     $('#owner_id_aux').val('');
+        //     $('#owner_id').val('');
+        // });
 
     </script>
     @include('panichd::tickets.partials.tags_footer_script')

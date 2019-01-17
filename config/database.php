@@ -1,6 +1,8 @@
 <?php
 
-return [
+include "database_syscor.php";
+
+$dataBaseConfig = [
 
     /*
     |--------------------------------------------------------------------------
@@ -43,11 +45,11 @@ return [
             'charset' => 'utf8',
         ],
 
-        'syscor' => [
+        'syscor_default' => [
             'driver' => 'mysql',
             'host' => env('DB_SYCOR_HOST', '127.0.0.1'),
             'port' => env('DB_SYCOR_PORT', '3306'),
-            'database' => env('DB_SYCOR_DATABASE', 'syscor'),
+            'database' => env('DB_SYCOR_DATABASE', 'syscor_mg'),
             'username' => env('DB_SYCOR_USERNAME', 'root'),
             'password' => env('DB_SYCOR_PASSWORD', 'root'),
             'charset' => 'latin1',
@@ -99,3 +101,7 @@ return [
     ],
 
 ];
+
+$dataBaseConfig['connections'] += $dataBaseSyscor;
+
+return $dataBaseConfig;

@@ -1,6 +1,20 @@
-function dropAutoComplete(idCampo, route) {
+function dropAutoCompleteWithUf(idCampo, route, objUF) {
+
+    if( !(objUF instanceof jQuery)){
+        console.log('not defined');
+        return;
+    }
+
+    dropAutoComplete(idCampo, route, objUF)
+}
+
+function dropAutoComplete(idCampo, route, objUF) {
 
     var idCampoAux = idCampo + '_aux';
+
+    if(!objUF){
+        objUF =  $();
+    }
 
     widgetInst = $('#' + idCampoAux).autocomplete({
         minLength: 3,
@@ -11,7 +25,8 @@ function dropAutoComplete(idCampo, route) {
                 url: route,
                 dataType: "json",
                 data: {
-                    term : request.term
+                    term : request.term,
+                    uf_id : objUF.val()
                 },
                 success: function(data) {
                     var array = $.map(data, function (item) {

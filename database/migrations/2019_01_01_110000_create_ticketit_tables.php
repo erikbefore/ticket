@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\Channel;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
@@ -42,6 +43,11 @@ class CreateTicketitTables extends Migration
 
         Schema::create('panichd_tickets', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('uf_id')->nullable();
+            $table->unsignedInteger('channel_id')->nullable(false)->default(Channel::SYSCOR['id']);
+            $table->unsignedInteger('mod_id')->nullable();
+            $table->unsignedInteger('type_id')->nullable();
+            $table->unsignedInteger('origin_id')->nullable();
             $table->string('subject')->index();
             $table->integer('hidden')->default('0');
             $table->longText('content');
@@ -62,7 +68,7 @@ class CreateTicketitTables extends Migration
 
         Schema::create('panichd_comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type',10)->default('note');
+            $table->string('type',10)->default('note')->index();
             $table->longText('content');
             $table->longText('html')->nullable();
             $table->integer('user_id')->unsigned()->index();
@@ -78,7 +84,7 @@ class CreateTicketitTables extends Migration
 //            $table->timestamps();
 //        });
 
-        Schema::create('panichd_attachments', function (Blueprint $table) {
+        Schema::create('attachments', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('ticket_id');
             $table->unsignedInteger('comment_id')->nullable();
@@ -108,11 +114,23 @@ class CreateTicketitTables extends Migration
             $table->timestamps();
         });
 
+        /**
+         * CREATE TABLE `panichd_taggables` (
+        `tag_id` int(11) NOT NULL,
+        `taggable_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+        `taggable_id` bigint(20) unsigned NOT NULL,
+        `created_at` timestamp NULL DEFAULT NULL,
+        `updated_at` timestamp NULL DEFAULT NULL,
+        KEY `panichd_taggables_taggable_type_taggable_id_index` (`taggable_type`,`taggable_id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+         */
+
         Schema::create('panichd_closingreasons', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id');
+            $table->unsignedInteger('category_id');
             $table->string('text');
-            $table->string('status_id')->nullable();
+            $table->unsignedInteger('status_id')->nullable();
             $table->integer('ordering');
             $table->timestamps();
         });
@@ -135,6 +153,37 @@ class CreateTicketitTables extends Migration
 
         Schema::table('panichd_categories_users', function (Blueprint $table) {
             $table->boolean('autoassign')->comment('new tickets autoassign enabled')->default('1');
+        });
+
+
+        Schema::table('panichd_tickets', function($table) {
+            $table->foreign('type_id')->references('id')->on('ticket_type');
+            $table->foreign('origin_id')->references('id')->on('ticket_origin');
+            $table->foreign('uf_id')->references('id')->on('uf');
+            $table->foreign('status_id')->references('id')->on('panichd_statuses');
+            $table->foreign('priority_id')->references('id')->on('panichd_priorities');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('creator_id')->references('id')->on('users');
+            $table->foreign('agent_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('panichd_categories');
+            $table->foreign('mod_id')->references('id')->on('module');
+            $table->foreign('channel_id')->references('id')->on('channel');
+        });
+
+
+        Schema::table('panichd_comments', function($table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('ticket_id')->references('id')->on('panichd_tickets');
+        });
+
+        Schema::table('panichd_closingreasons', function($table) {
+            $table->foreign('category_id')->references('id')->on('panichd_categories');
+            $table->foreign('status_id')->references('id')->on('panichd_statuses');
+        });
+
+        Schema::table('attachments', function($table) {
+            $table->foreign('ticket_id')->references('id')->on('panichd_tickets');
+            $table->foreign('comment_id')->references('id')->on('panichd_comments');
         });
     }
 
