@@ -16,3 +16,49 @@ label {
     padding: .20rem 1rem;
 }
 
+body {
+    background: #85309473;
+}
+
+.fixed-top{
+    background-color: #5a1680 !important;
+    font-weight: 700;
+}
+
+.fixed-top span{
+    color: azure;
+}
+
+.fixed-top .navbar-brand {
+    color: azure;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: azure;
+    margin-right: 20px;
+}
+
+.card-header{
+    background-color: rgba(84, 6, 234, 0.17);
+}
+
+.card-footer{
+    background-color: rgba(84, 6, 234, 0.17);
+}
+
+.card-header legend {
+     margin-bottom: 0;
+}
+
+.card-header .mb-2{
+    margin-bottom: -4px !important;
+    margin-top: 3px;
+}
+
+.card-header h2{
+    margin-bottom: .2rem;
+}
+
+.table td, .table th {
+    padding: .65rem;
+}

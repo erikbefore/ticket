@@ -9,7 +9,7 @@
 @section('content')
 <div class="card bg-light">
     <div class="card-header">
-      <button type="button" class="btn btn-primary float-right btn_member_modal" data-route="create">{{ trans('panichd::admin.btn-add-new') }}</button>
+      <button type="button" class="btn btn-outline-primary float-right btn_member_modal" data-route="create">{{ trans('panichd::admin.btn-add-new') }}</button>
       <h3>{{ trans('panichd::admin.member-index-title') }}</h3>
     </div>
     <div class="card-body">

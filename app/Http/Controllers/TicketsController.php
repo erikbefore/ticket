@@ -1918,25 +1918,4 @@ class TicketsController extends Controller
         return 'no';
     }
 
-
-    /**
-     * Calculate the date length it took to solve a ticket.
-     *
-     * @param Ticket $ticket
-     *
-     * @return int|false
-     */
-    public function ticketPerformance($ticket)
-    {
-        if ($ticket->completed_at == null) {
-            return false;
-        }
-
-        $created = new Carbon($ticket->created_at);
-        $completed = new Carbon($ticket->completed_at);
-        $length = $created->diff($completed)->days;
-
-        return $length;
-    }
-
 }

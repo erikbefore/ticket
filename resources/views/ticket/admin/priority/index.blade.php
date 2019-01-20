@@ -12,7 +12,7 @@
           {!! link_to_route(
             $setting->grab('admin_route').'.priority.create',
             trans('panichd::admin.btn-create-new-priority'), null,
-            ['class' => 'btn btn-primary float-right']
+            ['class' => 'btn btn-outline-primary float-right']
           ) !!}
           <h2>{{ trans('panichd::admin.priority-index-title') }}</h2>
         </div>

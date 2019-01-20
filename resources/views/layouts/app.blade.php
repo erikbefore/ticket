@@ -18,6 +18,23 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        body {
+            background: #85309473;
+        }
+        .navbar-laravel {
+
+            background-color: #5a1680 !important;
+        }
+        .navbar-brand{
+            color: azure !important;
+        }
+        .card-header {
+            background-color: rgba(84, 6, 234, 0.17);
+        }
+
+    </style>
 </head>
 <body>
     <div id="app">
@@ -70,7 +87,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-5">
             @yield('content')
         </main>
     </div>

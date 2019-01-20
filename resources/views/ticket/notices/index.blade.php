@@ -9,7 +9,7 @@
 @section('content')
 @if($n_notices == 0)
 	<div class="card bg-light">
-		<div class="card-body" style="text-align: center">{{ trans('panichd::lang.ticket-notices-empty') }}</div>
+		<div class="card-body list-filter" style="text-align: center">{{ trans('panichd::lang.ticket-notices-empty') }}</div>
 	</div>
 @else
 	<div class="card bg-light">

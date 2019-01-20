@@ -361,11 +361,8 @@ class Member extends User
 			}
 		}
 
-		if (LaravelVersion::min('5.3.0')) {
-            return $categories->pluck('name', 'id');
-        } else {
-            return $categories->lists('name', 'id');
-        }
+        return $categories->pluck('name', 'id');
+
 	}
 
 	/**

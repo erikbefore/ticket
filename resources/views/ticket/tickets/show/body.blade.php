@@ -1,9 +1,16 @@
 <div class="card">
-    <div id="ticket-body" class="card-body">
+    <div id="ticket-body" >
+
+		<div class="card-header">
+
+
+
+
+
 		<div class="d-lg-flex mb-2">
 			<h2 class="mr-auto">
 			@if ($ticket->completed_at)
-				<span class="text-success"><span class="fa fa-check-circle" title="tiquet completat" style="cursor: help"></span> {{ $ticket->subject }}</span>
+				<span class="text-success"><span class="fa fa-check-circle" title="Ticket finalizado" style="cursor: help"></span> {{ $ticket->subject }}</span>
 			@else
 				<span class="text-warning"><span class="fa fa-file" title="tiquet obert" style="cursor: help"></span> {{ $ticket->subject }}</span>
 			@endif
@@ -59,6 +66,9 @@
 				@endif
 			</div>
 		</div>
+		</div>
+
+		<div class="card-body">
 
 		<div class="row">
 			<div class="col-xl-2 col-lg-3 col-md-4">
@@ -261,4 +271,5 @@
         !!}
         {!! CollectiveForm::close() !!}
     </div>
+	</div>
 </div>
