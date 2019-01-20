@@ -43,7 +43,7 @@ class NoticesController extends Controller
 		$rules['user_id'] = 'required|exists:users,id';
 		
 		if ($request->input('department_id') != '0'){
-			$rules['department_id'] = 'required|exists:panichd_departments,id';			
+			$rules['department_id'] = 'required|exists:departments,id';
 		}
 		
         $this->validate($request, $rules);

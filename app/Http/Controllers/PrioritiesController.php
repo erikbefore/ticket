@@ -171,7 +171,7 @@ class PrioritiesController extends Controller
 		
 		if ($request->has('tickets_new_priority_id')){
 			$this->validate($request, [
-				'tickets_new_priority_id' => 'required|exists:panichd_priorities,id',
+				'tickets_new_priority_id' => 'required|exists:priorities,id',
 			]);
 			$priority->delete($request->tickets_new_priority_id);
 		}else{

@@ -338,7 +338,7 @@ class Member extends User
      */
     public function categories()
     {
-        return $this->belongsToMany('App\Model\Category', 'panichd_categories_users', 'user_id', 'category_id')->withPivot('autoassign')->orderBy('name');
+        return $this->belongsToMany('App\Model\Category', 'categories_users', 'user_id', 'category_id')->withPivot('autoassign')->orderBy('name');
     }
 
 	/**

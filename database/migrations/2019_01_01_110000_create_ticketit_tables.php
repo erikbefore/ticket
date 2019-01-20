@@ -13,20 +13,20 @@ class CreateTicketitTables extends Migration
      */
     public function up()
     {
-        Schema::create('panichd_statuses', function (Blueprint $table) {
+        Schema::create('statuses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('color');
         });
 
-        Schema::create('panichd_priorities', function (Blueprint $table) {
+        Schema::create('priorities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('color');
             $table->integer('magnitude')->nullable();
         });
 
-        Schema::create('panichd_categories', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('email_name')->nullable();
@@ -36,12 +36,12 @@ class CreateTicketitTables extends Migration
             $table->integer('create_level')->default('1');
         });
 
-        Schema::create('panichd_categories_users', function (Blueprint $table) {
+        Schema::create('categories_users', function (Blueprint $table) {
             $table->integer('category_id')->unsigned();
             $table->integer('user_id')->unsigned();
         });
 
-        Schema::create('panichd_tickets', function (Blueprint $table) {
+        Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('uf_id')->nullable();
             $table->unsignedInteger('channel_id')->nullable(false)->default(Channel::SYSCOR['id']);
@@ -66,7 +66,7 @@ class CreateTicketitTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('panichd_comments', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('type',10)->default('note')->index();
             $table->longText('content');
@@ -100,7 +100,7 @@ class CreateTicketitTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('panichd_tags', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('text_color')->default('#0b5394');
@@ -108,14 +108,14 @@ class CreateTicketitTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('panichd_taggables', function (Blueprint $table) {
+        Schema::create('taggables', function (Blueprint $table) {
             $table->integer('tag_id');
             $table->morphs('taggable');
             $table->timestamps();
         });
 
         /**
-         * CREATE TABLE `panichd_taggables` (
+         * CREATE TABLE `taggables` (
         `tag_id` int(11) NOT NULL,
         `taggable_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
         `taggable_id` bigint(20) unsigned NOT NULL,
@@ -126,7 +126,7 @@ class CreateTicketitTables extends Migration
 
          */
 
-        Schema::create('panichd_closingreasons', function (Blueprint $table) {
+        Schema::create('closingreasons', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('category_id');
             $table->string('text');
@@ -135,13 +135,13 @@ class CreateTicketitTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('panichd_departments_persons', function (Blueprint $table) {
+        Schema::create('departments_persons', function (Blueprint $table) {
             $table->integer('department_id')->unsigned();
             $table->integer('person_id')->unsigned();
             $table->timestamps();
         });
 
-        Schema::create('panichd_departments', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('shortening');
@@ -151,39 +151,39 @@ class CreateTicketitTables extends Migration
 
 
 
-        Schema::table('panichd_categories_users', function (Blueprint $table) {
+        Schema::table('categories_users', function (Blueprint $table) {
             $table->boolean('autoassign')->comment('new tickets autoassign enabled')->default('1');
         });
 
 
-        Schema::table('panichd_tickets', function($table) {
+        Schema::table('tickets', function($table) {
             $table->foreign('type_id')->references('id')->on('ticket_type');
             $table->foreign('origin_id')->references('id')->on('ticket_origin');
             $table->foreign('uf_id')->references('id')->on('uf');
-            $table->foreign('status_id')->references('id')->on('panichd_statuses');
-            $table->foreign('priority_id')->references('id')->on('panichd_priorities');
+            $table->foreign('status_id')->references('id')->on('statuses');
+            $table->foreign('priority_id')->references('id')->on('priorities');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('creator_id')->references('id')->on('users');
             $table->foreign('agent_id')->references('id')->on('users');
-            $table->foreign('category_id')->references('id')->on('panichd_categories');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('mod_id')->references('id')->on('module');
             $table->foreign('channel_id')->references('id')->on('channel');
         });
 
 
-        Schema::table('panichd_comments', function($table) {
+        Schema::table('comments', function($table) {
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('ticket_id')->references('id')->on('panichd_tickets');
+            $table->foreign('ticket_id')->references('id')->on('tickets');
         });
 
-        Schema::table('panichd_closingreasons', function($table) {
-            $table->foreign('category_id')->references('id')->on('panichd_categories');
-            $table->foreign('status_id')->references('id')->on('panichd_statuses');
+        Schema::table('closingreasons', function($table) {
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('status_id')->references('id')->on('statuses');
         });
 
         Schema::table('attachments', function($table) {
-            $table->foreign('ticket_id')->references('id')->on('panichd_tickets');
-            $table->foreign('comment_id')->references('id')->on('panichd_comments');
+            $table->foreign('ticket_id')->references('id')->on('tickets');
+            $table->foreign('comment_id')->references('id')->on('comments');
         });
     }
 
@@ -195,11 +195,11 @@ class CreateTicketitTables extends Migration
     public function down()
     {
        // Schema::drop('panichd_audits');
-        Schema::drop('panichd_comments');
-        Schema::drop('panichd_tickets');
-        Schema::drop('panichd_categories_users');
-        Schema::drop('panichd_categories');
-        Schema::drop('panichd_priorities');
-        Schema::drop('panichd_statuses');
+        Schema::drop('comments');
+        Schema::drop('tickets');
+        Schema::drop('categories_users');
+        Schema::drop('categories');
+        Schema::drop('priorities');
+        Schema::drop('statuses');
     }
 }

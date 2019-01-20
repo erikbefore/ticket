@@ -17,7 +17,7 @@ class Ticket extends Model
 {
     use ContentEllipse;
 
-    protected $table = 'panichd_tickets';
+    protected $table = 'tickets';
     protected $dates = ['completed_at'];
 	
 	/**
@@ -238,7 +238,7 @@ class Ticket extends Model
      */
     public function recentComments()
     {
-        return $this->hasMany('App\Model\Comment', 'ticket_id')->where('panichd_comments.updated_at','>', Carbon::yesterday());
+        return $this->hasMany('App\Model\Comment', 'ticket_id')->where('comments.updated_at','>', Carbon::yesterday());
     }
 
     /*
@@ -248,7 +248,7 @@ class Ticket extends Model
      */
     public function internalNotes()
     {
-        return $this->hasMany('App\Model\Comment', 'ticket_id')->where('panichd_comments.type','note');
+        return $this->hasMany('App\Model\Comment', 'ticket_id')->where('comments.type','note');
     }
 
 
@@ -291,7 +291,7 @@ class Ticket extends Model
      */
     public function tags()
     {
-        return $this->morphToMany('App\Model\Tag', 'taggable', 'panichd_taggables')->orderBy('name');
+        return $this->morphToMany('App\Model\Tag', 'taggable', 'taggables')->orderBy('name');
     }
 
     /**

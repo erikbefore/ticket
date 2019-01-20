@@ -12,9 +12,9 @@ class ClosingReasonsSeeder extends Seeder
     public function run()
     {
 
-        if (DB::table('panichd_closingreasons')->get()->count() == 0) {
+        if (DB::table('closingreasons')->get()->count() == 0) {
 
-            DB::table('panichd_closingreasons')->insert([
+            DB::table('closingreasons')->insert([
 
                 [
                     'id' => 1,
@@ -36,7 +36,7 @@ class ClosingReasonsSeeder extends Seeder
                 ],
             ]);
         } else {
-            echo "\e[31mTabela panichd_closingreasons não esta vazia ";
+            echo "\e[31mTabela closingreasons não esta vazia ";
         }
     }
 }

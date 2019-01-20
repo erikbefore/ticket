@@ -7,7 +7,7 @@ use App\Model\Tag;
 
 class Category extends Model
 {
-    protected $table = 'panichd_categories';
+    protected $table = 'categories';
 
     protected $fillable = ['name', 'color', 'create_level'];
 
@@ -60,7 +60,7 @@ class Category extends Model
      */
     public function agents()
     {
-        return $this->belongsToMany('\PanicHDMember', 'panichd_categories_users', 'category_id', 'user_id')->withPivot('autoassign')->orderBy('name');
+        return $this->belongsToMany('\PanicHDMember', 'categories_users', 'category_id', 'user_id')->withPivot('autoassign')->orderBy('name');
     }
 
     /**
@@ -70,7 +70,7 @@ class Category extends Model
      */
     public function tags()
     {
-        return $this->morphToMany('App\Model\Tag', 'taggable', 'panichd_taggables')->orderBy('name');
+        return $this->morphToMany('App\Model\Tag', 'taggable', 'taggables')->orderBy('name');
     }
 	
 	/**

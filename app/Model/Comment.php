@@ -10,7 +10,7 @@ class Comment extends Model
 {
     use ContentEllipse;
 
-    protected $table = 'panichd_comments';
+    protected $table = 'comments';
 	
 	/**
      * All of the relationships to be touched.

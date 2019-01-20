@@ -120,7 +120,7 @@ class StatusesController extends Controller
 		
 		if ($request->has('tickets_new_status_id')){
 			$this->validate($request, [
-				'tickets_new_status_id' => 'required|exists:panichd_statuses,id',
+				'tickets_new_status_id' => 'required|exists:statuses,id',
 			]);
 			$status->delete($request->tickets_new_status_id);
 		}else{

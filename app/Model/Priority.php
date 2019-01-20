@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Priority extends Model
 {
-    protected $table = 'panichd_priorities';
+    protected $table = 'priorities';
 
     protected $fillable = ['name', 'color', 'magnitude'];
 

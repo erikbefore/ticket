@@ -160,14 +160,14 @@ class PanicHDServiceProvider extends ServiceProvider
 
                     // Get notices
 					$a_notices = Ticket::active()->notHidden()->whereIn('user_id', $a_notice_users)
-						->join('panichd_priorities', 'priority_id', '=', 'panichd_priorities.id')
-						->select('panichd_tickets.*')
+						->join('priorities', 'priority_id', '=', 'priorities.id')
+						->select('tickets.*')
 						->with('owner.department')
 						->with('status')->with('tags')
 						->withCount('allAttachments')
 						->orderByRaw('CASE when status_id="'.Setting::grab('default_close_status_id').'" then 2 else 1 end')
 						->orderByRaw('date(start_date)')
-						->orderBy('panichd_priorities.magnitude', 'desc')
+						->orderBy('priorities.magnitude', 'desc')
 						->orderBy('start_date', 'asc')
 						->get();
 				}else{

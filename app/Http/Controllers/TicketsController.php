@@ -72,79 +72,79 @@ class TicketsController extends Controller
 
         $collection
             ->leftJoin('users', function ($join1){
-				$join1->on('users.id', '=', 'panichd_tickets.user_id');
+				$join1->on('users.id', '=', 'tickets.user_id');
 			})
 			->leftJoin($members_table . ' as members', function ($join2) {
-				$join2->on('members.id', '=', 'panichd_tickets.user_id');
+				$join2->on('members.id', '=', 'tickets.user_id');
 			})
 			->leftJoin($members_table . ' as creator', function ($join3){
-				$join3->on('creator.id', '=', 'panichd_tickets.creator_id');
+				$join3->on('creator.id', '=', 'tickets.creator_id');
 			})
-			->join('panichd_statuses', 'panichd_statuses.id', '=', 'panichd_tickets.status_id')
+			->join('statuses', 'statuses.id', '=', 'tickets.status_id')
             ->leftJoin($members_table . ' as agent', function ($join4){
-				$join4->on('agent.id', '=', 'panichd_tickets.agent_id');
+				$join4->on('agent.id', '=', 'tickets.agent_id');
 			})
-			->join('panichd_priorities', 'panichd_priorities.id', '=', 'panichd_tickets.priority_id')
-            ->join('panichd_categories', 'panichd_categories.id', '=', 'panichd_tickets.category_id')
+			->join('priorities', 'priorities.id', '=', 'tickets.priority_id')
+            ->join('categories', 'categories.id', '=', 'tickets.category_id')
 
 
 			// Tags joins
-			->leftJoin('panichd_taggables', function ($join5) {
-                $join5->on('panichd_tickets.id', '=', 'panichd_taggables.taggable_id')
-                    ->where('panichd_taggables.taggable_type', '=', 'App\\Model\\Ticket');
+			->leftJoin('taggables', function ($join5) {
+                $join5->on('tickets.id', '=', 'taggables.taggable_id')
+                    ->where('taggables.taggable_type', '=', 'App\\Model\\Ticket');
             })
-            ->leftJoin('panichd_tags', 'panichd_taggables.tag_id', '=', 'panichd_tags.id');
+            ->leftJoin('tags', 'taggables.tag_id', '=', 'tags.id');
 
 
-		$int_start_date = "CONVERT(date_format(panichd_tickets.start_date, '%Y%m%d%h%i%s'), SIGNED INTEGER)";
-	    $int_limit_date = "CONVERT(date_format(panichd_tickets.limit_date, '%Y%m%d%h%i%s'), SIGNED INTEGER)";
+		$int_start_date = "CONVERT(date_format(tickets.start_date, '%Y%m%d%h%i%s'), SIGNED INTEGER)";
+	    $int_limit_date = "CONVERT(date_format(tickets.limit_date, '%Y%m%d%h%i%s'), SIGNED INTEGER)";
 
 		$a_select = [
-			'panichd_tickets.id',
-			'panichd_tickets.created_at',
-			'panichd_tickets.subject AS subject',
-			'panichd_tickets.hidden as hidden',
-			'panichd_tickets.content AS content',
-			'panichd_tickets.intervention AS intervention',
-			'panichd_tickets.status_id as status_id',
-			'panichd_statuses.name AS status',
-			'panichd_statuses.color AS color_status',
-			'panichd_priorities.color AS color_priority',
-			'panichd_categories.color AS color_category',
-			'panichd_tickets.start_date as start_date',
+			'tickets.id',
+			'tickets.created_at',
+			'tickets.subject AS subject',
+			'tickets.hidden as hidden',
+			'tickets.content AS content',
+			'tickets.intervention AS intervention',
+			'tickets.status_id as status_id',
+			'statuses.name AS status',
+			'statuses.color AS color_status',
+			'priorities.color AS color_priority',
+			'categories.color AS color_category',
+			'tickets.start_date as start_date',
 			\DB::raw(' 0-'.$int_start_date.' as inverse_start_date'),
-			\DB::raw('CASE panichd_tickets.limit_date WHEN NULL THEN 0 ELSE 1 END as has_limit'),
-			'panichd_tickets.limit_date as limit_date',
+			\DB::raw('CASE tickets.limit_date WHEN NULL THEN 0 ELSE 1 END as has_limit'),
+			'tickets.limit_date as limit_date',
 			\DB::raw(' 0-'.$int_limit_date.' as inverse_limit_date'),
-			'panichd_tickets.limit_date as calendar',
-			'panichd_tickets.updated_at AS updated_at',
-			'panichd_tickets.completed_at AS completed_at',
-			'panichd_tickets.agent_id',
+			'tickets.limit_date as calendar',
+			'tickets.updated_at AS updated_at',
+			'tickets.completed_at AS completed_at',
+			'tickets.agent_id',
 			'agent.name as agent_name',
-			'panichd_priorities.name AS priority',
-			'panichd_priorities.magnitude AS priority_magnitude',
+			'priorities.name AS priority',
+			'priorities.magnitude AS priority_magnitude',
 			'members.name AS owner_name',
 			'creator.name as creator_name',
-			'panichd_tickets.user_id',
-			'panichd_tickets.creator_id',
-			'panichd_categories.id as category_id',
-			'panichd_categories.name AS category',
+			'tickets.user_id',
+			'tickets.creator_id',
+			'categories.id as category_id',
+			'categories.name AS category',
 
 			// Tag Columns
-			\DB::raw('group_concat(panichd_tags.id) AS tags_id'),
-			\DB::raw('group_concat(panichd_tags.name) AS tags'),
-			\DB::raw('group_concat(panichd_tags.bg_color) AS tags_bg_color'),
-			\DB::raw('group_concat(panichd_tags.text_color) AS tags_text_color'),
+			\DB::raw('group_concat(tags.id) AS tags_id'),
+			\DB::raw('group_concat(tags.name) AS tags'),
+			\DB::raw('group_concat(tags.bg_color) AS tags_bg_color'),
+			\DB::raw('group_concat(tags.text_color) AS tags_text_color'),
 		];
 
         if (Setting::grab('departments_feature')){
-			$collection->leftJoin('panichd_departments', 'panichd_departments.id', '=', 'members.department_id')
-				->leftJoin('panichd_departments as dep_ancestor', 'panichd_departments.department_id', '=', 'dep_ancestor.id');
+			$collection->leftJoin('departments', 'departments.id', '=', 'members.department_id')
+				->leftJoin('departments as dep_ancestor', 'departments.department_id', '=', 'dep_ancestor.id');
 
 			// Department columns
-			$a_select[] = \DB::raw('CASE panichd_departments.department_id WHEN NULL THEN "" ELSE dep_ancestor.name END as dep_ancestor_name');
+			$a_select[] = \DB::raw('CASE departments.department_id WHEN NULL THEN "" ELSE dep_ancestor.name END as dep_ancestor_name');
 
-			$a_select[] = \DB::raw('concat_ws(\'' . trans('panichd::lang.colon') . ' \', dep_ancestor.name, panichd_departments.name) as dept_full_name');
+			$a_select[] = \DB::raw('concat_ws(\'' . trans('panichd::lang.colon') . ' \', dep_ancestor.name, departments.name) as dept_full_name');
 
 		}else{
             $a_select[] = \DB::raw(' "" as  dep_ancestor_name');
@@ -154,7 +154,7 @@ class TicketsController extends Controller
 
 
 		$collection
-			->groupBy('panichd_tickets.id')
+			->groupBy('tickets.id')
             ->select($a_select)
 			->with('creator')
 			->with('agent')
@@ -924,10 +924,10 @@ class TicketsController extends Controller
 				$request->merge(['hidden' => 0]);
 			}
 
-			$fields['status_id'] = 'required|exists:panichd_statuses,id';
+			$fields['status_id'] = 'required|exists:statuses,id';
 			if (!Setting::grab('use_default_status_id')) $fields['status_id'].= '|not_in:' . Setting::grab('default_status_id');
 
-			$fields['priority_id'] = 'required|exists:panichd_priorities,id';
+			$fields['priority_id'] = 'required|exists:priorities,id';
 
 			if ($request->has('start_date')){
 				\Datetime::createFromFormat(trans('panichd::lang.datetime-format'), $request->input('start_date'));
@@ -1295,13 +1295,13 @@ class TicketsController extends Controller
 			->with('category.closingReasons')
 			->with('tags')
 			->leftJoin($members_table, function($join1) use($members_table){
-				$join1->on($members_table . '.id', '=', 'panichd_tickets.user_id');
+				$join1->on($members_table . '.id', '=', 'tickets.user_id');
 			})
 			->leftJoin($members_table . ' as creator', function($join2){
-				$join2->on('creator.id', '=', 'panichd_tickets.creator_id');
+				$join2->on('creator.id', '=', 'tickets.creator_id');
 			})
 			->leftJoin($members_table . ' as agent', function($join3){
-				$join3->on('agent.id', '=', 'panichd_tickets.agent_id');
+				$join3->on('agent.id', '=', 'tickets.agent_id');
 			});
 
 		if (Setting::grab('departments_feature')){
@@ -1309,7 +1309,7 @@ class TicketsController extends Controller
 		}
 
 		$a_select = [
-			'panichd_tickets.*',
+			'tickets.*',
 			$members_table . '.name as owner_name',
 			'creator.name as creator_name',
 			'agent.name as agent_name',

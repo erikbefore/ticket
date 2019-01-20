@@ -196,7 +196,7 @@ class CategoriesController extends Controller
 
 					if ($request->exists('jquery_reason_status_id_'.$i)){
 						$reason['status_id'] = $request->input('jquery_reason_status_id_'.$i);
-						$reason_rules['jquery_reason_status_id_'.$i] = "required|exists:panichd_statuses,id";
+						$reason_rules['jquery_reason_status_id_'.$i] = "required|exists:statuses,id";
 
 						// Reason message
 						$reason_messages['jquery_reason_status_id_'.$i.'.required'] = trans('panichd::admin.category-reason-no-status', ['number' => $i+1,'name'=>$reason['text']]);
