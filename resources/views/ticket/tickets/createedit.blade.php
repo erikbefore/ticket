@@ -250,7 +250,7 @@
                 <div class="card-footer">
 
                         {!! CollectiveForm::submit(trans('panichd::lang.btn-add'), [
-                                'class' => 'btn btn-primary btn-block  ajax_form_submit',
+                                'class' => 'btn btn-outline-success btn-block  ajax_form_submit',
                                 'data-errors_div' => 'form_errors'
                             ]) !!}
                     </div>

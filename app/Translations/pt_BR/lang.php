@@ -284,7 +284,7 @@ $original =  [
 
     'update-priority-ok' => 'A prioridade foi atualizada corretamente. Ticket <a  href=":link" title=":title"><u>:name</u></a>: :old - > :new',
     'create-ticket-title' => 'Novo Formulário de Chamado',
-    'create-new-ticket' => 'Criar novo Ticket',
+    'create-new-ticket' => 'Criar novo ticket',
     'create-ticket-brief-issue' => 'Descreva brevemente seu Chamado',
 
     'create-ticket-notices' => 'Avisos',
