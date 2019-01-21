@@ -42,13 +42,14 @@ class ModuloController extends Controller
                 ->join('menu_sub AS sub', 'sub.sub_id', '=', 'modulo.sub_id')
                 ->join('menu AS me', 'me.me_id', '=', 'sub.me_id')
                 ->orderBy(\DB::raw(" me.me_ordem ASC, me.me_nome ASC, sub.sub_nome ASC, mod_nome "))
-                ->take(10)->get();
+                ->take(10)
+                ->get();
 
             resetConnection();
         }
 
         foreach ($data as $modulo) {
-            $return[] = ["id" => $modulo->mod_id, "label" => utf8_encode("{$modulo->me_nome} > $modulo->sub_nome > $modulo->mod_nome")];
+            $return[] = ["id" => $modulo->mod_id, "label" => "$modulo->me_nome > $modulo->sub_nome > $modulo->mod_nome"];
         }
 
         return response()->json($return);

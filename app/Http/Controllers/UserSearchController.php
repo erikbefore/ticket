@@ -35,7 +35,7 @@ class UserSearchController
 
             resetConnection();
 
-            return response()->json(ArrayIsoToUtf8::converter($users));
+            return response()->json(($users));
 
         } catch (Exception $e) {
             error_log("Falha ao listar os usuários.");

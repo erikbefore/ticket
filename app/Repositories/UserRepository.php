@@ -38,6 +38,7 @@ class UserRepository
             ->where('us_nome', 'LIKE', "%{$name}%")
             ->where('us_ativo', '=', '1')
             ->orderBy(\DB::raw("us_nome"))
+            ->take(10)
             ->get();
     }
 

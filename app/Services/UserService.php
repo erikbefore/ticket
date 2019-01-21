@@ -54,7 +54,7 @@ class UserService
 
     public function findUserByName(Request $request){
 
-        $name = utf8_decode($request->term);
+        $name = ($request->term);
         $return = [];
 
         if(!$name){

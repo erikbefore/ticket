@@ -67,3 +67,21 @@ body {
 .card-header .text-warning{
     color: #fb8417!important;
 }
+
+.ui-menu{
+    z-index: 500;
+}
+
+.ui-widget-content {
+    background: #c59dcc;
+}
+
+.ui-widget-content a {
+    color: #5b057e;
+}
+
+.ui-widget {
+    /* font-family: Arial,Helvetica,sans-serif; */
+    font-family: unset;
+    font-size: .8em;
+}
