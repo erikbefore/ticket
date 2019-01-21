@@ -5,14 +5,15 @@
 @include('panichd::shared.common')
 
 @section('content')
+	<div class="container-fluid-create">
         @include('panichd::tickets.show.body')
 		@if($u->isAdmin())
 			@include('panichd::tickets.show.modal_delete')
 		@endif
 		@include('panichd::tickets.show.modal_complete')
-		
+
 		@if($u->canCommentTicket($ticket->id) || ( !$comments->isEmpty() && $ticket->comments->forLevel(1)->count() ) )
-			<div style="margin-top: 2em;">        	
+			<div style="margin-top: 2em;">
 				<h3 style="margin-top: 0em; color: antiquewhite;">{{ trans('panichd::lang.comments') }}
 					@if ($u->canCommentTicket($ticket->id))
 						<button type="button" class="btn btn-light btn-default" data-toggle="modal" data-target="#modal-comment-new" data-add-comment="{{ $ticket->hidden ? 'no' : 'yes' }}">{{ $ticket->hidden ? trans('panichd::lang.show-ticket-add-note') : trans('panichd::lang.show-ticket-add-comment') }}</button>
@@ -28,6 +29,7 @@
 		@if ($setting->grab('ticket_attachments_feature'))
 			@include('panichd::shared.attach_files_script')
 		@endif
+	</div>
 @endsection
 
 @include('panichd::shared.photoswipe_files')

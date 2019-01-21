@@ -3,16 +3,12 @@
 
 		<div class="card-header">
 
-
-
-
-
 		<div class="d-lg-flex mb-2">
 			<h2 class="mr-auto">
 			@if ($ticket->completed_at)
 				<span class="text-success"><span class="fa fa-check-circle" title="Ticket finalizado" style="cursor: help"></span> {{ $ticket->subject }}</span>
 			@else
-				<span class="text-warning"><span class="fa fa-file" title="tiquet obert" style="cursor: help"></span> {{ $ticket->subject }}</span>
+				<span class=""><span class="fa fa-file" title="Ticket aberto" style="cursor: help"></span> {{ $ticket->subject }}</span>
 			@endif
 			</h2>
 
@@ -71,7 +67,7 @@
 		<div class="card-body">
 
 		<div class="row">
-			<div class="col-xl-2 col-lg-3 col-md-4">
+			<div class="col-md-4">
 				<p>
 				<strong>{{ trans('panichd::lang.ticket') }}</strong>{{ trans('panichd::lang.colon') . trans('panichd::lang.table-id') . $ticket->id }}
 				@if ($u->currentLevel() > 1)
@@ -182,24 +178,28 @@
 				@endif
 				</p>
 			</div>
-			<div class="col-xl-10 col-lg-9 col-md-8">
+			<div class="col-md-8">
 				<div class="row equal">
-					<div class="{{ $ticket->intervention_html ? 'col-lg-6 mb-3 mb-lg-0' : 'col-md-12'}}">
+					<div class="col-md-12">
 						<div class="card" style="height: 100%">
 							<div class="card-body">
 								<div>
-									<b>{{ trans('panichd::lang.description') }}</b>
+									<strong>
+										<b>{{ trans('panichd::lang.description') }}</b>
+									</strong>
 								</div>
 								<div class="summernote-text-wrapper"> {!! $ticket->html !!} </div>
 							</div>
 						</div>
 					</div>
 					@if ($ticket->intervention_html)
-						<div class="col-lg-6">
+						<div class="col-md-12">
 							<div class="card" style="height: 100%">
 								<div class="card-body">
 									<div>
-										<b>{{ trans('panichd::lang.intervention') }}</b>
+										<strong>
+											<b>{{ trans('panichd::lang.intervention') }}</b>
+										</strong>
 									</div>
 									<div class="summernote-text-wrapper"> {!! $ticket->intervention_html !!} </div>
 								</div>

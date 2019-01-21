@@ -22,7 +22,8 @@ body {
 
 .fixed-top{
     background-color: #5a1680 !important;
-    font-weight: 700;
+    font-weight: 900;
+    padding: .5rem 1rem .2rem
 }
 
 .fixed-top span{
@@ -61,4 +62,8 @@ body {
 
 .table td, .table th {
     padding: .65rem;
+}
+
+.card-header .text-warning{
+    color: #fb8417!important;
 }

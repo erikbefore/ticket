@@ -261,7 +261,7 @@
         <div class="card-footer">
             <div class=" form-group col-md-12">
                 {!! CollectiveForm::submit('Atualizar ticket', [
-                        'class' => 'btn btn-success btn-block ajax_form_submit',
+                        'class' => 'btn btn-outline-success btn-block ajax_form_submit',
                         'data-errors_div' => 'form_errors'
                     ]) !!}
             </div>

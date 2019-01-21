@@ -53,12 +53,13 @@ function dropAutoComplete(idCampo, route, objUF) {
         }
     }).data('ui-autocomplete');
 
+    if(widgetInst){
+        widgetInst._renderItem  = function (ul, item) {
 
-    widgetInst._renderItem  = function (ul, item) {
-
-        return $("<li></li>")
-            .data("item.autocomplete", item)
-            .append("<a>" + item.label + "</a>")
-            .appendTo(ul);
-    };
+            return $("<li></li>")
+                .data("item.autocomplete", item)
+                .append("<a>" + item.label + "</a>")
+                .appendTo(ul);
+        };
+    }
 }
